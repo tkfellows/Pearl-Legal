@@ -4,308 +4,571 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - Pearl</title>
+    
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom styles -->
     <style>
         :root {
-            --pearl-primary: #007AFF;
-            --pearl-secondary: #0056b3;
-            --pearl-light: #f8f9fa;
-            --pearl-dark: #333;
-            --pearl-muted: #666;
-            --pearl-warning: #dc3545;
-            --pearl-info: #17a2b8;
+            /* Pearl App Color Palette */
+            --pearl-primary: #6366f1;
+            --pearl-secondary: #4f46e5;
+            --pearl-accent: #8b5cf6;
+            --pearl-light: #f8fafc;
+            --pearl-dark: #1e293b;
+            --pearl-muted: #64748b;
+            --pearl-success: #10b981;
+            --pearl-warning: #f59e0b;
+            --pearl-error: #ef4444;
+            --pearl-info: #3b82f6;
+            
+            /* Gradients */
+            --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
+            --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            
+            /* Shadows */
+            --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--pearl-light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--pearl-gradient-light);
             color: var(--pearl-dark);
-            line-height: 1.6;
+            line-height: 1.7;
+            min-height: 100vh;
         }
         
-        .container {
-            max-width: 800px;
+        .header-section {
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        .main-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: none;
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
         
-        h1 {
-            color: var(--pearl-primary);
-            border-bottom: 2px solid var(--pearl-primary);
-            padding-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        h2 {
-            color: var(--pearl-dark);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            font-size: 1.5rem;
-        }
-        
-        h3 {
-            color: var(--pearl-muted);
-            margin-top: 1.5rem;
-            font-weight: 500;
-            font-size: 1.2rem;
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
         .back-link {
-            background: var(--pearl-primary);
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .back-link:hover {
-            background: var(--pearl-secondary);
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            color: white;
         }
         
-        .highlight {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            border-radius: 6px;
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .warning {
-            background: #f8d7da;
+        .page-meta {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--pearl-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             border-left: 4px solid var(--pearl-warning);
-            border-radius: 6px;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
         }
         
-        .info-box {
-            background: #d1ecf1;
-            border-left: 4px solid var(--pearl-info);
-            border-radius: 6px;
+        .highlight-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
         }
         
-        ul {
-            margin-left: 1.25rem;
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--pearl-primary);
+            position: relative;
         }
         
-        li {
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--pearl-accent);
+        }
+        
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--pearl-secondary);
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content-list li {
+            position: relative;
+            padding: 0.75rem 0 0.75rem 2rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .content-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 20px;
+            height: 20px;
+            background: var(--pearl-success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .footer {
+            background: var(--pearl-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
             margin-bottom: 0.5rem;
         }
         
-        .section-divider {
-            border-top: 1px solid #dee2e6;
+        .table-of-contents {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
             margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc-list li {
+            margin: 0.5rem 0;
+        }
+        
+        .toc-list a {
+            color: var(--pearl-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .toc-list a:hover {
+            color: var(--pearl-accent);
         }
         
         .legal-note {
-            font-size: 0.9rem;
-            color: var(--pearl-muted);
-            font-style: italic;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid var(--pearl-info);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .legal-note::before {
+            content: 'ℹ️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <div class="card main-card">
-            <div class="card-body p-5">
-                <a href="index.html" class="btn back-link mb-4">← Back to Legal Documents</a>
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="main-container">
+            <div class="header-content">
+                <a href="index.html" class="back-link" data-aos="fade-right">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Legal Documents
+                </a>
                 
-                <h1>Terms of Service</h1>
-                <p class="text-muted"><strong>Last updated:</strong> January 2025</p>
-                
-                <div class="alert highlight" role="alert">
-                    <strong>Important Notice:</strong> By downloading, installing, or using Pearl, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the application.
+                <div class="text-center" data-aos="fade-up">
+                    <h1 class="page-title">Terms of Service</h1>
+                    <p class="page-meta"><strong>Created:</strong> July 2025 | <strong>Last updated:</strong> July 2025</p>
                 </div>
-                
-                <h2>1. Acceptance of Terms</h2>
-                <p>These Terms of Service ("Terms") constitute a legally binding agreement between you and Pearl ("we," "our," or "us") governing your use of the Pearl mobile application ("App") and any related services. By accessing or using Pearl, you expressly agree to be bound by these Terms and our Privacy Policy, which is incorporated by reference.</p>
-                
-                <h2>2. Description of Service</h2>
-                <p>Pearl is a professional medical knowledge management application designed to assist medical students, healthcare professionals, and medical researchers in organizing, storing, and accessing clinical pearls, medical notes, and educational content. The application provides the following core features:</p>
-                <ul>
-                    <li>Text-based note creation and organization with rich formatting</li>
-                    <li>High-quality audio recording with advanced speech-to-text transcription</li>
-                    <li>Photo capture and storage with annotation capabilities</li>
-                    <li>Comprehensive tagging and categorization by medical specialty</li>
-                    <li>Advanced search and filtering capabilities</li>
-                    <li>Secure iCloud backup and synchronization (optional)</li>
-                    <li>Data export and import functionality in multiple formats</li>
-                    <li>Cross-device synchronization and accessibility</li>
-                </ul>
-                
-                <h2>3. User Eligibility and Registration</h2>
-                <ul>
-                    <li>You must be at least 13 years of age to use Pearl</li>
-                    <li>If you are under 18 years of age, you must have explicit parental or guardian consent</li>
-                    <li>You must have the legal capacity to enter into and be bound by these Terms</li>
-                    <li>You must comply with all applicable local, state, national, and international laws and regulations</li>
-                    <li>You represent and warrant that you are not prohibited from using the App under applicable law</li>
-                </ul>
-                
-                <h2>4. User Responsibilities and Acceptable Use</h2>
-                
-                <h3>4.1 Appropriate Use and Conduct</h3>
-                <ul>
-                    <li>Use Pearl exclusively for lawful purposes and in accordance with these Terms</li>
-                    <li>Respect all intellectual property rights, including copyrights, trademarks, and patents</li>
-                    <li>Do not attempt to reverse engineer, decompile, or modify the App or its source code</li>
-                    <li>Do not use the App to transmit harmful, malicious, or inappropriate content</li>
-                    <li>Maintain the security of your device, account credentials, and personal information</li>
-                    <li>Do not attempt to gain unauthorized access to our systems or other users' data</li>
-                    <li>Report any security vulnerabilities or suspicious activity immediately</li>
-                </ul>
-                
-                <h3>4.2 Medical Content and Professional Standards</h3>
-                <ul>
-                    <li>You are solely responsible for the accuracy, completeness, and appropriateness of all medical content you create</li>
-                    <li>Pearl is designed as a knowledge management tool and is not a substitute for professional medical advice, diagnosis, or treatment</li>
-                    <li>Always verify medical information with authoritative sources and current medical literature</li>
-                    <li>Do not rely solely on Pearl for clinical decision-making or patient care</li>
-                    <li>Comply with all applicable medical privacy laws, including but not limited to HIPAA, GDPR, and local regulations</li>
-                    <li>Maintain appropriate professional standards and ethical guidelines</li>
-                    <li>Ensure patient confidentiality and privacy in all content and usage</li>
-                </ul>
-                
-                <h3>4.3 Data Management and Backup</h3>
-                <ul>
-                    <li>You are responsible for regularly backing up your data and content</li>
-                    <li>Export important content regularly to prevent data loss</li>
-                    <li>Keep your device operating system and the App updated to the latest versions</li>
-                    <li>Monitor available storage space on your device</li>
-                    <li>Implement appropriate security measures for your device and data</li>
-                </ul>
-                
-                <h2>5. Intellectual Property Rights</h2>
-                
-                <h3>5.1 App Ownership and Licenses</h3>
-                <ul>
-                    <li>Pearl, including its software, design, content, and functionality, is owned by us or our licensors</li>
-                    <li>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App</li>
-                    <li>You retain full ownership of all content you create within the App</li>
-                    <li>You grant us a limited license to process your content solely for App functionality and service provision</li>
-                    <li>We do not claim ownership of your medical notes, clinical content, or personal data</li>
-                </ul>
-                
-                <h3>5.2 User Content and Third-Party Materials</h3>
-                <ul>
-                    <li>You own all content you create, upload, or store in Pearl</li>
-                    <li>You are responsible for ensuring you have all necessary rights to use any third-party content</li>
-                    <li>Do not upload copyrighted material without proper authorization or fair use justification</li>
-                    <li>Respect patient privacy, confidentiality, and all applicable medical privacy regulations</li>
-                    <li>You represent that your content does not infringe on any third-party rights</li>
-                </ul>
-                
-                <h2>6. Privacy and Data Protection</h2>
-                <ul>
-                    <li>Your privacy and data security are fundamental to our service</li>
-                    <li>We collect and process data strictly as described in our Privacy Policy</li>
-                    <li>You maintain full control over your data and can export or delete it at any time</li>
-                    <li>iCloud backup is optional and entirely controlled by your device settings</li>
-                    <li>We do not sell, rent, or share your medical data with third parties</li>
-                    <li>All data transmission and storage employ industry-standard encryption</li>
-                    <li>We comply with applicable data protection laws and regulations</li>
-                </ul>
-                
-                <h2>7. Payment Terms and Pricing</h2>
-                <ul>
-                    <li>Pearl is available as a one-time purchase for $4.99 USD</li>
-                    <li>All payments are processed securely through the Apple App Store</li>
-                    <li>All sales are final unless required by applicable consumer protection laws</li>
-                    <li>Refunds are subject to Apple App Store policies and procedures</li>
-                    <li>Prices may be adjusted for new users with appropriate notice</li>
-                    <li>No recurring charges or subscription fees apply</li>
-                </ul>
-                
-                <h2>8. App Store Distribution and Terms</h2>
-                <ul>
-                    <li>Pearl is distributed exclusively through the Apple App Store</li>
-                    <li>You must comply with all Apple App Store terms and conditions</li>
-                    <li>Apple's terms and conditions apply to all purchases and transactions</li>
-                    <li>We are responsible for App functionality, support, and compliance with App Store guidelines</li>
-                    <li>App Store availability may vary by region and device compatibility</li>
-                </ul>
-                
-                <h2>9. Disclaimers and Limitations</h2>
-                
-                <div class="alert warning" role="alert">
-                    <strong>Medical Disclaimer:</strong> Pearl is a knowledge management and organizational tool designed to assist medical professionals. It is not intended to replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions and patient care.
-                </div>
-                
-                <ul>
-                    <li><strong>No Medical Advice:</strong> We do not provide medical advice, diagnosis, or treatment recommendations</li>
-                    <li><strong>Content Accuracy:</strong> We do not guarantee the accuracy, completeness, or reliability of user-generated content</li>
-                    <li><strong>Service Availability:</strong> We do not guarantee uninterrupted or error-free App availability</li>
-                    <li><strong>Device Compatibility:</strong> App functionality may vary by device model, iOS version, and system requirements</li>
-                    <li><strong>Third-Party Services:</strong> We are not responsible for third-party services including iCloud, App Store, or device functionality</li>
-                    <li><strong>Data Loss:</strong> We are not liable for data loss, corruption, or unauthorized access</li>
-                </ul>
-                
-                <h2>10. Limitation of Liability</h2>
-                <ul>
-                    <li>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages</li>
-                    <li>Our total liability for any claims arising from your use of Pearl is limited to the amount you paid for the App</li>
-                    <li>We are not liable for any data loss, corruption, or unauthorized access to your content</li>
-                    <li>You acknowledge that you are responsible for backing up and protecting your data</li>
-                    <li>Some jurisdictions do not allow liability limitations, so these limitations may not apply to you</li>
-                </ul>
-                
-                <h2>11. Indemnification</h2>
-                <p>You agree to indemnify, defend, and hold harmless Pearl and its officers, directors, employees, and agents from and against any claims, damages, losses, costs, or expenses (including reasonable attorneys' fees) arising from your use of the App, violation of these Terms, or infringement of any third-party rights.</p>
-                
-                <h2>12. Termination and Account Cancellation</h2>
-                <ul>
-                    <li>You may discontinue use of Pearl at any time by uninstalling the App</li>
-                    <li>We may terminate or suspend your access to the App for violations of these Terms</li>
-                    <li>Upon termination, you retain full ownership of your content and data</li>
-                    <li>We recommend exporting your data before uninstalling the App</li>
-                    <li>Certain provisions of these Terms survive termination</li>
-                </ul>
-                
-                <h2>13. Modifications to Terms</h2>
-                <ul>
-                    <li>We reserve the right to modify these Terms at any time with appropriate notice</li>
-                    <li>We will notify users of significant changes through the App or other reasonable means</li>
-                    <li>Continued use of Pearl after changes constitutes acceptance of the updated Terms</li>
-                    <li>We recommend reviewing these Terms periodically for updates</li>
-                    <li>Material changes will be communicated with at least 30 days' notice</li>
-                </ul>
-                
-                <h2>14. Governing Law and Dispute Resolution</h2>
-                <p>These Terms are governed by and construed in accordance with the laws of the United States. Any disputes arising from these Terms or your use of Pearl shall be resolved exclusively in the courts of the United States, and you consent to the personal jurisdiction of such courts.</p>
-                
-                <h2>15. Severability and Waiver</h2>
-                <p>If any provision of these Terms is found to be unenforceable or invalid, the remaining provisions will continue in full force and effect. Our failure to enforce any right or provision of these Terms does not constitute a waiver of such right or provision.</p>
-                
-                <h2>16. Entire Agreement</h2>
-                <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and Pearl regarding the use of the App and supersede all prior agreements and understandings.</p>
-                
-                <h2>17. Contact Information and Support</h2>
-                <p>For questions, concerns, or legal inquiries regarding these Terms, please contact us:</p>
-                <ul>
-                    <li><strong>Legal Inquiries:</strong> legal@pearlapp.com</li>
-                    <li><strong>Privacy Concerns:</strong> privacy@pearlapp.com</li>
-                    <li><strong>Technical Support:</strong> <a href="support.html">Contact Support</a></li>
-                    <li><strong>General Inquiries:</strong> hello@pearlapp.com</li>
-                </ul>
-                
-                <div class="section-divider"></div>
-                
-                <div class="alert info-box" role="alert">
-                    <strong>Effective Date:</strong> These Terms of Service are effective as of January 2025 and apply to all users of Pearl. By using Pearl, you acknowledge that you have read, understood, and agree to be bound by these Terms.
-                </div>
-                
-                <p class="legal-note text-center mt-4">
-                    This document has been prepared in accordance with standard legal practices and App Store requirements. 
-                    For legal advice specific to your situation, please consult with a qualified attorney.
-                </p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="main-container">
+            <div class="content-card" data-aos="fade-up">
+                <div class="highlight-box">
+                    <strong>Important:</strong> By using Pearl, you agree to these Terms of Service. Please read them carefully before using the app.
+                </div>
+                
+                <div class="table-of-contents">
+                    <h3 class="toc-title">📋 Table of Contents</h3>
+                    <ul class="toc-list">
+                        <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                        <li><a href="#description">2. Description of Service</a></li>
+                        <li><a href="#eligibility">3. Eligibility and Registration</a></li>
+                        <li><a href="#user-conduct">4. User Conduct and Responsibilities</a></li>
+                        <li><a href="#content">5. User Content and Intellectual Property</a></li>
+                        <li><a href="#privacy">6. Privacy and Data Protection</a></li>
+                        <li><a href="#medical-disclaimer">7. Medical Disclaimer</a></li>
+                        <li><a href="#purchases">8. In-App Purchases and Subscriptions</a></li>
+                        <li><a href="#termination">9. Termination and Account Deletion</a></li>
+                        <li><a href="#disclaimers">10. Disclaimers and Limitations</a></li>
+                        <li><a href="#indemnification">11. Indemnification</a></li>
+                        <li><a href="#governing-law">12. Governing Law and Disputes</a></li>
+                        <li><a href="#changes">13. Changes to Terms</a></li>
+                        <li><a href="#contact">14. Contact Information</a></li>
+                    </ul>
+                </div>
+                
+                <section id="acceptance">
+                    <h2 class="section-title">1. Acceptance of Terms</h2>
+                    <p>By downloading, installing, or using the Pearl mobile application ("App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+                    <p>These Terms constitute a legally binding agreement between you and Pearl ("we," "our," or "us") regarding your use of the App and related services.</p>
+                </section>
+                
+                <section id="description">
+                    <h2 class="section-title">2. Description of Service</h2>
+                    <p>Pearl is a medical knowledge management application designed to help healthcare professionals organize, store, and access clinical pearls and medical information. The App includes:</p>
+                    <ul class="content-list">
+                        <li>Text-based medical note creation and organization</li>
+                        <li>Audio recording with speech-to-text transcription</li>
+                        <li>Photo capture and storage for medical documentation</li>
+                        <li>Tagging and categorization features</li>
+                        <li>Local data storage with optional iCloud backup</li>
+                        <li>Search and retrieval functionality</li>
+                    </ul>
+                </section>
+                
+                <section id="eligibility">
+                    <h2 class="section-title">3. Eligibility and Registration</h2>
+                    <ul class="content-list">
+                        <li>You must be at least 18 years old to use Pearl</li>
+                        <li>You must have a valid Apple ID and compatible iOS device</li>
+                        <li>You are responsible for maintaining the security of your device and Apple ID</li>
+                        <li>You must comply with all applicable laws and regulations</li>
+                    </ul>
+                </section>
+                
+                <section id="user-conduct">
+                    <h2 class="section-title">4. User Conduct and Responsibilities</h2>
+                    
+                    <h3 class="subsection-title">4.1 Acceptable Use</h3>
+                    <p>You agree to use Pearl only for lawful purposes and in accordance with these Terms. You are responsible for:</p>
+                    <ul class="content-list">
+                        <li>Maintaining the confidentiality of your device and data</li>
+                        <li>Ensuring your medical content complies with applicable laws</li>
+                        <li>Not using the App for unauthorized medical practice</li>
+                        <li>Respecting patient privacy and confidentiality</li>
+                    </ul>
+                    
+                    <h3 class="subsection-title">4.2 Prohibited Activities</h3>
+                    <p>You agree not to:</p>
+                    <ul class="content-list">
+                        <li>Use Pearl for illegal or unauthorized purposes</li>
+                        <li>Attempt to reverse engineer or modify the App</li>
+                        <li>Share your account or device access with unauthorized users</li>
+                        <li>Use the App to violate patient privacy or HIPAA regulations</li>
+                        <li>Upload malicious content or attempt to compromise app security</li>
+                    </ul>
+                </section>
+                
+                <section id="content">
+                    <h2 class="section-title">5. User Content and Intellectual Property</h2>
+                    
+                    <h3 class="subsection-title">5.1 Your Content</h3>
+                    <p>You retain ownership of all medical content you create using Pearl. You are solely responsible for:</p>
+                    <ul class="content-list">
+                        <li>The accuracy and legality of your medical content</li>
+                        <li>Ensuring you have proper authorization to store medical information</li>
+                        <li>Compliance with medical record-keeping requirements</li>
+                        <li>Backing up your important medical data</li>
+                    </ul>
+                    
+                    <h3 class="subsection-title">5.2 App Intellectual Property</h3>
+                    <p>Pearl and its content, features, and functionality are owned by us and protected by copyright, trademark, and other intellectual property laws. You may not:</p>
+                    <ul class="content-list">
+                        <li>Copy, modify, or distribute the App or its code</li>
+                        <li>Use our trademarks or branding without permission</li>
+                        <li>Create derivative works based on the App</li>
+                    </ul>
+                </section>
+                
+                <section id="privacy">
+                    <h2 class="section-title">6. Privacy and Data Protection</h2>
+                    <p>Your privacy is important to us. Our collection and use of your information is governed by our Privacy Policy, which is incorporated into these Terms by reference.</p>
+                    <ul class="content-list">
+                        <li>All medical data is stored locally on your device by default</li>
+                        <li>iCloud backup is optional and follows Apple's security standards</li>
+                        <li>We do not access or store your medical content on our servers</li>
+                        <li>You control all data sharing and backup settings</li>
+                    </ul>
+                </section>
+                
+                <section id="medical-disclaimer">
+                    <h2 class="section-title">7. Medical Disclaimer</h2>
+                    <div class="legal-note">
+                        <strong>Medical Disclaimer:</strong> Pearl is a knowledge management tool and should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.
+                    </div>
+                    <ul class="content-list">
+                        <li>Pearl is not a substitute for professional medical judgment</li>
+                        <li>We do not provide medical advice or clinical recommendations</li>
+                        <li>You are responsible for the accuracy of your medical content</li>
+                        <li>The App does not guarantee clinical outcomes or patient safety</li>
+                    </ul>
+                </section>
+                
+                <section id="purchases">
+                    <h2 class="section-title">8. In-App Purchases and Subscriptions</h2>
+                    <ul class="content-list">
+                        <li>Pearl may offer premium features through in-app purchases</li>
+                        <li>All purchases are processed through Apple's App Store</li>
+                        <li>Subscription terms and pricing are subject to change</li>
+                        <li>You can manage subscriptions through your Apple ID settings</li>
+                        <li>Refunds are subject to Apple's App Store policies</li>
+                    </ul>
+                </section>
+                
+                <section id="termination">
+                    <h2 class="section-title">9. Termination and Account Deletion</h2>
+                    <ul class="content-list">
+                        <li>You may stop using Pearl at any time</li>
+                        <li>Deleting the App will remove local data (unless backed up to iCloud)</li>
+                        <li>We may terminate access for Terms violations</li>
+                        <li>Upon termination, your data remains under your control</li>
+                    </ul>
+                </section>
+                
+                <section id="disclaimers">
+                    <h2 class="section-title">10. Disclaimers and Limitations</h2>
+                    
+                    <h3 class="subsection-title">10.1 Service Availability</h3>
+                    <ul class="content-list">
+                        <li>Pearl is provided "as is" without warranties of any kind</li>
+                        <li>We do not guarantee uninterrupted or error-free operation</li>
+                        <li>App updates may temporarily affect functionality</li>
+                        <li>We are not responsible for data loss due to device issues</li>
+                    </ul>
+                    
+                    <h3 class="subsection-title">10.2 Limitation of Liability</h3>
+                    <p>To the maximum extent permitted by law, Pearl shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App.</p>
+                </section>
+                
+                <section id="indemnification">
+                    <h2 class="section-title">11. Indemnification</h2>
+                    <p>You agree to indemnify and hold harmless Pearl from any claims, damages, or expenses arising from your use of the App or violation of these Terms.</p>
+                </section>
+                
+                <section id="governing-law">
+                    <h2 class="section-title">12. Governing Law and Disputes</h2>
+                    <ul class="content-list">
+                        <li>These Terms are governed by the laws of the United States</li>
+                        <li>Disputes will be resolved through binding arbitration</li>
+                        <li>Class action lawsuits are waived</li>
+                        <li>Small claims court actions are permitted</li>
+                    </ul>
+                </section>
+                
+                <section id="changes">
+                    <h2 class="section-title">13. Changes to Terms</h2>
+                    <p>We may update these Terms from time to time. We will notify you of significant changes through the App or email. Your continued use of Pearl after changes constitutes acceptance of the updated Terms.</p>
+                </section>
+                
+                <section id="contact">
+                    <h2 class="section-title">14. Contact Information</h2>
+                    <p>If you have questions about these Terms, please contact us:</p>
+                    <ul class="content-list">
+                        <li><strong>Email:</strong> legal@pearlapp.com</li>
+                        <li><strong>Support:</strong> <a href="support.html">Contact Support</a></li>
+                        <li><strong>Privacy:</strong> <a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </section>
+                
+                <div class="highlight-box">
+                    <strong>Effective Date:</strong> These Terms of Service are effective as of July 2025 and apply to all users of the Pearl app.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="main-container">
+            <div class="footer-content">
+                <h3 class="footer-title">Pearl Medical Knowledge App</h3>
+                <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
+                <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
+                <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

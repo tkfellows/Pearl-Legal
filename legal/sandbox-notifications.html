@@ -4,228 +4,687 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Store Server Notifications - Pearl</title>
+    
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom styles -->
     <style>
         :root {
-            --pearl-primary: #007AFF;
-            --pearl-secondary: #0056b3;
-            --pearl-light: #f8f9fa;
-            --pearl-dark: #333;
-            --pearl-muted: #666;
-            --pearl-warning: #dc3545;
-            --pearl-info: #17a2b8;
+            /* Pearl App Color Palette */
+            --pearl-primary: #6366f1;
+            --pearl-secondary: #4f46e5;
+            --pearl-accent: #8b5cf6;
+            --pearl-light: #f8fafc;
+            --pearl-dark: #1e293b;
+            --pearl-muted: #64748b;
+            --pearl-success: #10b981;
+            --pearl-warning: #f59e0b;
+            --pearl-error: #ef4444;
+            --pearl-info: #3b82f6;
+            
+            /* Gradients */
+            --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
+            --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            
+            /* Shadows */
+            --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--pearl-light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--pearl-gradient-light);
             color: var(--pearl-dark);
-            line-height: 1.6;
+            line-height: 1.7;
+            min-height: 100vh;
         }
         
-        .container {
-            max-width: 800px;
+        .header-section {
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        .main-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: none;
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
         
-        h1 {
-            color: var(--pearl-primary);
-            border-bottom: 2px solid var(--pearl-primary);
-            padding-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        h2 {
-            color: var(--pearl-dark);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        
-        h3 {
-            color: var(--pearl-muted);
-            margin-top: 1.5rem;
-            font-weight: 500;
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
         .back-link {
-            background: var(--pearl-primary);
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .back-link:hover {
-            background: var(--pearl-secondary);
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-meta {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+        
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--pearl-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--pearl-primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--pearl-accent);
+        }
+        
+        .subsection-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--pearl-secondary);
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .content-list li {
+            position: relative;
+            padding: 0.75rem 0 0.75rem 2rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .content-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 20px;
+            height: 20px;
+            background: var(--pearl-success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .content-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .footer {
+            background: var(--pearl-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .table-of-contents {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc-list li {
+            margin: 0.5rem 0;
+        }
+        
+        .toc-list a {
+            color: var(--pearl-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .toc-list a:hover {
+            color: var(--pearl-accent);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--pearl-warning);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
         }
         
         .info-box {
-            background: #d1ecf1;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             border-left: 4px solid var(--pearl-info);
-            border-radius: 6px;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
         }
         
-        .warning-box {
-            background: #f8d7da;
-            border-left: 4px solid var(--pearl-warning);
-            border-radius: 6px;
+        .info-box::before {
+            content: 'ℹ️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
         }
         
         .code-block {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 6px;
-            padding: 1rem;
-            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.9rem;
+            line-height: 1.5;
             overflow-x: auto;
         }
         
-        .notification-type {
-            background: var(--pearl-light);
-            border-left: 4px solid var(--pearl-primary);
-            border-radius: 6px;
-            padding: 1rem;
-            margin: 1rem 0;
+        .notification-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
-        .notification-type h4 {
+        .notification-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-card:hover {
+            box-shadow: var(--pearl-shadow);
+        }
+        
+        .notification-type {
+            font-weight: 600;
             color: var(--pearl-primary);
             margin-bottom: 0.5rem;
-            font-weight: 600;
+        }
+        
+        .notification-description {
+            color: var(--pearl-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .notification-types {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <div class="card main-card">
-            <div class="card-body p-5">
-                <a href="index.html" class="btn back-link mb-4">← Back to Legal Documents</a>
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="main-container">
+            <div class="header-content">
+                <a href="index.html" class="back-link" data-aos="fade-right">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Legal Documents
+                </a>
                 
-                <h1>App Store Server Notifications</h1>
-                <p class="text-muted"><strong>Last updated:</strong> January 2025</p>
-                
-                <div class="alert info-box" role="alert">
-                    <strong>Important:</strong> This document provides information about App Store Server Notifications for Pearl purchases. These notifications help ensure secure and reliable transaction processing.
-                </div>
-                
-                <h2>Overview</h2>
-                <p>App Store Server Notifications are automated messages sent by Apple to our servers when events occur related to your Pearl purchase. These notifications help us maintain accurate records and provide better service to our users.</p>
-                
-                <h2>What Are App Store Server Notifications?</h2>
-                <p>App Store Server Notifications are secure, automated messages that Apple sends to our servers when certain events happen with your Pearl purchase, such as:</p>
-                <ul>
-                    <li>Successful purchase completion</li>
-                    <li>Purchase refunds or cancellations</li>
-                    <li>Subscription status changes (if applicable in the future)</li>
-                    <li>Billing issues or payment failures</li>
-                    <li>Account changes affecting purchases</li>
-                </ul>
-                
-                <h2>How It Works</h2>
-                
-                <h3>1. Purchase Process</h3>
-                <div class="notification-type">
-                    <h4>Initial Purchase</h4>
-                    <p>When you purchase Pearl for $4.99, Apple processes the payment and sends us a notification confirming the successful transaction.</p>
-                </div>
-                
-                <h3>2. Notification Types</h3>
-                
-                <div class="notification-type">
-                    <h4>CONSUMPTION_REQUEST</h4>
-                    <p>Sent when Apple needs to verify that Pearl has been properly delivered to your device. This helps prevent fraud and ensures you receive what you paid for.</p>
-                </div>
-                
-                <div class="notification-type">
-                    <h4>REFUND</h4>
-                    <p>Sent when a refund is processed through the App Store. This helps us maintain accurate records of your purchase status.</p>
-                </div>
-                
-                <div class="notification-type">
-                    <h4>REFUND_DECLINED</h4>
-                    <p>Sent when a refund request is declined by Apple, typically due to policy violations or timing restrictions.</p>
-                </div>
-                
-                <h2>Data Security and Privacy</h2>
-                <ul>
-                    <li><strong>Secure Transmission:</strong> All notifications are sent over encrypted HTTPS connections</li>
-                    <li><strong>Limited Data:</strong> Notifications contain only transaction-related information, not your personal medical data</li>
-                    <li><strong>No Medical Content:</strong> Your Pearl content and medical notes are never included in these notifications</li>
-                    <li><strong>Apple's Responsibility:</strong> Apple handles all payment processing and notification delivery</li>
-                    <li><strong>Our Use:</strong> We use this data only for transaction verification and customer support</li>
-                </ul>
-                
-                <h2>What Information Is Included</h2>
-                <p>App Store Server Notifications may include:</p>
-                <ul>
-                    <li>Transaction identifiers</li>
-                    <li>Purchase dates and times</li>
-                    <li>Product identifiers (Pearl app)</li>
-                    <li>Purchase amounts</li>
-                    <li>Refund information (if applicable)</li>
-                    <li>Account identifiers (anonymized)</li>
-                </ul>
-                
-                <div class="alert warning-box" role="alert">
-                    <strong>Important:</strong> App Store Server Notifications do not contain any of your medical content, personal notes, or clinical pearls. Your medical data remains completely separate from transaction processing.
-                </div>
-                
-                <h2>Technical Implementation</h2>
-                <p>Our servers are configured to receive and process these notifications securely. The process includes:</p>
-                <ul>
-                    <li>Secure endpoint for receiving notifications</li>
-                    <li>Verification of notification authenticity</li>
-                    <li>Encrypted storage of transaction records</li>
-                    <li>Automatic processing and logging</li>
-                    <li>Error handling and retry mechanisms</li>
-                </ul>
-                
-                <h2>Your Rights and Control</h2>
-                <ul>
-                    <li><strong>Transparency:</strong> You can request information about what transaction data we store</li>
-                    <li><strong>Deletion:</strong> You can request deletion of transaction records (subject to legal requirements)</li>
-                    <li><strong>Access:</strong> You can access your purchase history through your Apple ID account</li>
-                    <li><strong>Control:</strong> You control all aspects of your Pearl content and medical data</li>
-                </ul>
-                
-                <h2>Future Considerations</h2>
-                <p>While Pearl is currently a one-time purchase, we may introduce additional features in the future. If we add subscription services or in-app purchases, App Store Server Notifications will help us manage those transactions securely and reliably.</p>
-                
-                <h2>Contact Information</h2>
-                <p>If you have questions about App Store Server Notifications or your Pearl purchase:</p>
-                <ul>
-                    <li><strong>Purchase Issues:</strong> Contact Apple Support through your App Store account</li>
-                    <li><strong>App Functionality:</strong> <a href="support.html">Contact our support team</a></li>
-                    <li><strong>Privacy Concerns:</strong> privacy@pearlapp.com</li>
-                    <li><strong>Technical Questions:</strong> support@pearlapp.com</li>
-                </ul>
-                
-                <div class="alert info-box mt-4" role="alert">
-                    <strong>Note:</strong> App Store Server Notifications are a standard part of App Store transactions and help ensure secure, reliable service for all users. They do not affect your privacy or the security of your medical data within Pearl.
-                </div>
-                
-                <div class="text-center mt-4">
-                    <p class="text-muted">
-                        <small>
-                            © 2025 Pearl App. All rights reserved.<br>
-                            This information is provided in accordance with App Store guidelines and best practices.
-                        </small>
-                    </p>
+                <div class="text-center" data-aos="fade-up">
+                    <h1 class="page-title">App Store Server Notifications</h1>
+                    <p class="page-meta"><strong>Created:</strong> July 2025 | <strong>Last updated:</strong> July 2025</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="main-container">
+            <div class="content-card" data-aos="fade-up">
+                <div class="highlight-box">
+                    <strong>Important:</strong> This document explains how Pearl handles App Store Server Notifications for secure and transparent transaction processing.
+                </div>
+                
+                <div class="table-of-contents">
+                    <h3 class="toc-title">📋 Table of Contents</h3>
+                    <ul class="toc-list">
+                        <li><a href="#overview">1. Overview</a></li>
+                        <li><a href="#what-are-notifications">2. What Are App Store Server Notifications?</a></li>
+                        <li><a href="#notification-types">3. Notification Types</a></li>
+                        <li><a href="#security">4. Security and Privacy</a></li>
+                        <li><a href="#implementation">5. Technical Implementation</a></li>
+                        <li><a href="#data-handling">6. Data Handling and Storage</a></li>
+                        <li><a href="#user-controls">7. User Controls and Preferences</a></li>
+                        <li><a href="#compliance">8. Compliance and Standards</a></li>
+                        <li><a href="#contact">9. Contact Information</a></li>
+                    </ul>
+                </div>
+                
+                <section id="overview">
+                    <h2 class="section-title">1. Overview</h2>
+                    <p>Pearl uses Apple's App Store Server Notifications to ensure secure, reliable, and transparent processing of in-app purchases and subscriptions. This system provides real-time updates about transaction status, subscription changes, and billing events.</p>
+                    
+                    <div class="info-box">
+                        <strong>Purpose:</strong> App Store Server Notifications help Pearl maintain accurate billing records, prevent fraud, and provide users with transparent transaction information.
+                    </div>
+                </section>
+                
+                <section id="what-are-notifications">
+                    <h2 class="section-title">2. What Are App Store Server Notifications?</h2>
+                    <p>App Store Server Notifications are secure, encrypted messages sent by Apple to Pearl's servers when specific events occur related to your purchases. These notifications include:</p>
+                    
+                    <ul class="content-list">
+                        <li><strong>Purchase Events:</strong> Initial purchases, renewals, and cancellations</li>
+                        <li><strong>Subscription Changes:</strong> Upgrades, downgrades, and billing updates</li>
+                        <li><strong>Refund Processing:</strong> Refund requests and processing status</li>
+                        <li><strong>Account Changes:</strong> Family sharing updates and account transfers</li>
+                        <li><strong>Billing Issues:</strong> Payment failures and retry attempts</li>
+                    </ul>
+                </section>
+                
+                <section id="notification-types">
+                    <h2 class="section-title">3. Notification Types</h2>
+                    <p>Pearl receives and processes the following types of App Store Server Notifications:</p>
+                    
+                    <div class="notification-types">
+                        <div class="notification-card">
+                            <div class="notification-type">CONSUMPTION_REQUEST</div>
+                            <div class="notification-description">
+                                Apple requests consumption information for consumable in-app purchases to prevent duplicate purchases.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">DID_CHANGE_RENEWAL_PREF</div>
+                            <div class="notification-description">
+                                User changed their subscription renewal preference (e.g., from monthly to annual).
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">DID_CHANGE_RENEWAL_STATUS</div>
+                            <div class="notification-description">
+                                User enabled or disabled subscription auto-renewal.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">DID_FAIL_TO_RENEW</div>
+                            <div class="notification-description">
+                                Subscription renewal failed due to payment issues.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">DID_RENEW</div>
+                            <div class="notification-description">
+                                Subscription successfully renewed for another period.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">EXPIRED</div>
+                            <div class="notification-description">
+                                Subscription expired and was not renewed.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">GRACE_PERIOD_EXPIRED</div>
+                            <div class="notification-description">
+                                Grace period for failed payment has expired.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">OFFER_REDEEMED</div>
+                            <div class="notification-description">
+                                User redeemed a promotional offer or discount code.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">PRICE_INCREASE</div>
+                            <div class="notification-description">
+                                Subscription price increased and user was notified.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">REFUND</div>
+                            <div class="notification-description">
+                                Purchase was refunded by Apple or user.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">REFUND_DECLINED</div>
+                            <div class="notification-description">
+                                Refund request was declined by Apple.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">RENEWAL_EXTENDED</div>
+                            <div class="notification-description">
+                                Subscription renewal period was extended.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">REVOKE</div>
+                            <div class="notification-description">
+                                Purchase was revoked (e.g., due to fraud detection).
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">SUBSCRIBED</div>
+                            <div class="notification-description">
+                                User successfully subscribed to a service.
+                            </div>
+                        </div>
+                        
+                        <div class="notification-card">
+                            <div class="notification-type">TEST</div>
+                            <div class="notification-description">
+                                Test notification sent by Apple for verification.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="security">
+                    <h2 class="section-title">4. Security and Privacy</h2>
+                    
+                    <h3 class="subsection-title">4.1 Encryption and Authentication</h3>
+                    <ul class="content-list">
+                        <li>All notifications are encrypted using industry-standard TLS/SSL protocols</li>
+                        <li>Apple verifies notification authenticity using cryptographic signatures</li>
+                        <li>Pearl validates each notification before processing</li>
+                        <li>Secure webhook endpoints with authentication tokens</li>
+                    </ul>
+                    
+                    <h3 class="subsection-title">4.2 Data Protection</h3>
+                    <ul class="content-list">
+                        <li>Notification data is processed securely and never shared with third parties</li>
+                        <li>Personal information is minimized and encrypted at rest</li>
+                        <li>Access to notification data is restricted to authorized personnel only</li>
+                        <li>Regular security audits and penetration testing</li>
+                    </ul>
+                </section>
+                
+                <section id="implementation">
+                    <h2 class="section-title">5. Technical Implementation</h2>
+                    
+                    <h3 class="subsection-title">5.1 Webhook Endpoints</h3>
+                    <p>Pearl maintains secure webhook endpoints to receive App Store Server Notifications:</p>
+                    
+                    <div class="code-block">
+                        Production: https://api.pearlapp.com/webhooks/appstore<br>
+                        Sandbox: https://api.pearlapp.com/webhooks/appstore/sandbox
+                    </div>
+                    
+                    <h3 class="subsection-title">5.2 Notification Processing</h3>
+                    <ul class="content-list">
+                        <li>Real-time notification reception and validation</li>
+                        <li>Automatic transaction status updates</li>
+                        <li>Subscription state synchronization</li>
+                        <li>Error handling and retry mechanisms</li>
+                        <li>Comprehensive logging for audit trails</li>
+                    </ul>
+                </section>
+                
+                <section id="data-handling">
+                    <h2 class="section-title">6. Data Handling and Storage</h2>
+                    
+                    <h3 class="subsection-title">6.1 Data Collection</h3>
+                    <ul class="content-list">
+                        <li>Transaction identifiers and purchase tokens</li>
+                        <li>Subscription status and renewal information</li>
+                        <li>Billing events and payment status</li>
+                        <li>App Store account identifiers (anonymized)</li>
+                        <li>Notification timestamps and event types</li>
+                    </ul>
+                    
+                    <h3 class="subsection-title">6.2 Data Retention</h3>
+                    <ul class="content-list">
+                        <li>Transaction records retained for 7 years (tax compliance)</li>
+                        <li>Subscription data retained while active plus 2 years</li>
+                        <li>Notification logs retained for 90 days for debugging</li>
+                        <li>Anonymized analytics data retained indefinitely</li>
+                    </ul>
+                </section>
+                
+                <section id="user-controls">
+                    <h2 class="section-title">7. User Controls and Preferences</h2>
+                    <ul class="content-list">
+                        <li>Users can view their purchase history in the App Store</li>
+                        <li>Subscription management through Apple ID settings</li>
+                        <li>Refund requests processed through Apple Support</li>
+                        <li>Data export available upon request</li>
+                        <li>Account deletion removes all associated data</li>
+                    </ul>
+                </section>
+                
+                <section id="compliance">
+                    <h2 class="section-title">8. Compliance and Standards</h2>
+                    
+                    <h3 class="subsection-title">8.1 App Store Guidelines</h3>
+                    <ul class="content-list">
+                        <li>Full compliance with Apple's App Store Review Guidelines</li>
+                        <li>Implementation of required App Store Server Notifications</li>
+                        <li>Proper handling of subscription status changes</li>
+                        <li>Transparent pricing and billing practices</li>
+                    </ul>
+                    
+                    <h3 class="subsection-title">8.2 Legal Compliance</h3>
+                    <ul class="content-list">
+                        <li>GDPR compliance for European users</li>
+                        <li>CCPA compliance for California residents</li>
+                        <li>HIPAA compliance for medical data handling</li>
+                        <li>PCI DSS compliance for payment processing</li>
+                    </ul>
+                </section>
+                
+                <section id="contact">
+                    <h2 class="section-title">9. Contact Information</h2>
+                    <p>For questions about App Store Server Notifications or billing issues:</p>
+                    <ul class="content-list">
+                        <li><strong>Billing Support:</strong> billing@pearlapp.com</li>
+                        <li><strong>Technical Support:</strong> <a href="support.html">Contact Support</a></li>
+                        <li><strong>Legal Inquiries:</strong> legal@pearlapp.com</li>
+                    </ul>
+                </section>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> App Store Server Notifications are essential for maintaining accurate billing records and providing reliable service. Pearl processes these notifications automatically to ensure your subscription status is always current and accurate.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="main-container">
+            <div class="footer-content">
+                <h3 class="footer-title">Pearl Medical Knowledge App</h3>
+                <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
+                <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
+                <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
