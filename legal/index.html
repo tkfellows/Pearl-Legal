@@ -4,136 +4,397 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pearl - Legal Documents</title>
+    
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom styles -->
     <style>
         :root {
-            --pearl-primary: #007AFF;
-            --pearl-secondary: #0056b3;
-            --pearl-light: #f8f9fa;
-            --pearl-dark: #333;
-            --pearl-muted: #666;
+            /* Pearl App Color Palette */
+            --pearl-primary: #6366f1;
+            --pearl-secondary: #4f46e5;
+            --pearl-accent: #8b5cf6;
+            --pearl-light: #f8fafc;
+            --pearl-dark: #1e293b;
+            --pearl-muted: #64748b;
+            --pearl-success: #10b981;
+            --pearl-warning: #f59e0b;
+            --pearl-error: #ef4444;
+            --pearl-info: #3b82f6;
+            
+            /* Gradients */
+            --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
+            --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            
+            /* Shadows */
+            --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--pearl-light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--pearl-gradient-light);
             color: var(--pearl-dark);
+            line-height: 1.6;
+            min-height: 100vh;
         }
         
-        .container {
-            max-width: 800px;
+        .hero-section {
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        .main-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border: none;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
         
-        .page-title {
-            color: var(--pearl-primary);
-            font-size: 2.5rem;
-            font-weight: 600;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
         
         .doc-card {
-            background: var(--pearl-light);
-            border-left: 4px solid var(--pearl-primary);
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            height: 100%;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--pearl-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--pearl-gradient);
         }
         
         .doc-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--pearl-shadow-xl);
         }
         
-        .doc-card h3 {
-            color: var(--pearl-primary);
+        .doc-card:hover .doc-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .doc-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--pearl-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .doc-title {
+            font-size: 1.5rem;
             font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .doc-description {
+            color: var(--pearl-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
         
         .doc-link {
-            background: var(--pearl-primary);
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s ease;
+            border: none;
         }
         
         .doc-link:hover {
-            background: var(--pearl-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--pearl-shadow-lg);
+            color: white;
         }
         
         .footer {
-            color: var(--pearl-muted);
-            font-size: 0.9rem;
+            background: var(--pearl-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .doc-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <div class="card main-card">
-            <div class="card-body p-5">
-                <h1 class="page-title text-center mb-4">📚 Pearl Legal Documents</h1>
-                <p class="text-center text-muted fs-5 mb-5">
-                    Official legal documents and support information for the Pearl medical knowledge app.
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="main-container">
+            <div class="hero-content text-center" data-aos="fade-up">
+                <h1 class="hero-title">📚 Pearl Legal Documents</h1>
+                <p class="hero-subtitle">
+                    Comprehensive legal documentation and support information for the Pearl medical knowledge app. 
+                    Professional, secure, and compliant with App Store guidelines.
                 </p>
-                
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="card doc-card h-100">
-                            <div class="card-body p-4">
-                                <h3 class="card-title">🔒 Privacy Policy</h3>
-                                <p class="card-text text-muted">Learn how Pearl protects your medical data and personal information.</p>
-                                <a href="privacy-policy.html" class="btn doc-link">View Privacy Policy</a>
-                            </div>
-                        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="main-container">
+            <div class="doc-grid">
+                <div class="doc-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="doc-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    
-                    <div class="col-md-6">
-                        <div class="card doc-card h-100">
-                            <div class="card-body p-4">
-                                <h3 class="card-title">📋 Terms of Service</h3>
-                                <p class="card-text text-muted">Terms and conditions for using the Pearl app and its services.</p>
-                                <a href="terms-of-service.html" class="btn doc-link">View Terms of Service</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="card doc-card h-100">
-                            <div class="card-body p-4">
-                                <h3 class="card-title">🔔 App Store Notifications</h3>
-                                <p class="card-text text-muted">Information about App Store Server Notifications for Pearl purchases.</p>
-                                <a href="sandbox-notifications.html" class="btn doc-link">View Notifications Info</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="card doc-card h-100">
-                            <div class="card-body p-4">
-                                <h3 class="card-title">💬 Support & Contact</h3>
-                                <p class="card-text text-muted">Get help with Pearl and contact our support team.</p>
-                                <a href="support.html" class="btn doc-link">Contact Support</a>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="doc-title">Privacy Policy</h3>
+                    <p class="doc-description">
+                        Comprehensive privacy protection for your medical data. Learn how Pearl safeguards your personal information 
+                        and maintains the highest standards of data security and confidentiality.
+                    </p>
+                    <a href="privacy-policy.html" class="doc-link">
+                        View Privacy Policy
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
                 
-                <div class="footer text-center mt-5">
-                    <p class="mb-1">© 2025 Pearl App. All rights reserved.</p>
-                    <p class="mb-0">Last updated: January 2025</p>
+                <div class="doc-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="doc-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="doc-title">Terms of Service</h3>
+                    <p class="doc-description">
+                        Complete terms and conditions governing your use of Pearl. Professional legal framework ensuring 
+                        compliance with App Store guidelines and medical industry standards.
+                    </p>
+                    <a href="terms-of-service.html" class="doc-link">
+                        View Terms of Service
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="doc-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="doc-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="doc-title">App Store Notifications</h3>
+                    <p class="doc-description">
+                        Detailed information about App Store Server Notifications for Pearl purchases. 
+                        Transparent transaction processing and secure payment handling.
+                    </p>
+                    <a href="sandbox-notifications.html" class="doc-link">
+                        View Notifications Info
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="doc-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="doc-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="doc-title">Support & Contact</h3>
+                    <p class="doc-description">
+                        Professional support services and contact information. Get help with Pearl, 
+                        report issues, or request features from our dedicated support team.
+                    </p>
+                    <a href="support.html" class="doc-link">
+                        Contact Support
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="main-container">
+            <div class="footer-content">
+                <h3 class="footer-title">Pearl Medical Knowledge App</h3>
+                <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
+                <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
+                <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
 </body>
 </html> 
