@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pearl - Legal Documents</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #007AFF;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .doc-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #007AFF;
+            transition: transform 0.2s ease;
+        }
+        .doc-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .doc-card h3 {
+            color: #007AFF;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .doc-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .doc-link {
+            display: inline-block;
+            background: #007AFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        .doc-link:hover {
+            background: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Pearl Legal Documents</h1>
+        <p style="text-align: center; color: #666; font-size: 1.1em;">
+            Official legal documents and support information for the Pearl medical knowledge app.
+        </p>
+        
+        <div class="doc-grid">
+            <div class="doc-card">
+                <h3>🔒 Privacy Policy</h3>
+                <p>Learn how Pearl protects your medical data and personal information.</p>
+                <a href="privacy-policy.html" class="doc-link">View Privacy Policy</a>
+            </div>
+            
+            <div class="doc-card">
+                <h3>📋 Terms of Service</h3>
+                <p>Terms and conditions for using the Pearl app and its services.</p>
+                <a href="terms-of-service.html" class="doc-link">View Terms of Service</a>
+            </div>
+            
+            <div class="doc-card">
+                <h3>🔔 App Store Notifications</h3>
+                <p>Information about App Store Server Notifications for Pearl purchases.</p>
+                <a href="sandbox-notifications.html" class="doc-link">View Notifications Info</a>
+            </div>
+            
+            <div class="doc-card">
+                <h3>💬 Support & Contact</h3>
+                <p>Get help with Pearl and contact our support team.</p>
+                <a href="support.html" class="doc-link">Contact Support</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Pearl App. All rights reserved.</p>
+            <p>Last updated: January 2025</p>
+        </div>
+    </div>
+</body>
+</html> 
