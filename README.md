@@ -1,7 +1,7 @@
 # Pearl - Medical Knowledge Management
 
 <div align="center">
-  <img src="PearlAppIcon.png" alt="Pearl App Icon" width="120" height="120">
+  <img src="Resources/PearlAppIcon.png" alt="Pearl App Icon" width="120" height="120">
   
   **Professional medical knowledge management for healthcare providers**
   
