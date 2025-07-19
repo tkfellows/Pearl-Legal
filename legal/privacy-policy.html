@@ -4,180 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Pearl</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom styles -->
     <style>
+        :root {
+            --pearl-primary: #007AFF;
+            --pearl-secondary: #0056b3;
+            --pearl-light: #f8f9fa;
+            --pearl-dark: #333;
+            --pearl-muted: #666;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--pearl-light);
+            color: var(--pearl-dark);
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            color: #333;
         }
+        
         .container {
+            max-width: 800px;
+        }
+        
+        .main-card {
             background: white;
-            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: none;
         }
+        
         h1 {
-            color: #007AFF;
-            border-bottom: 2px solid #007AFF;
+            color: var(--pearl-primary);
+            border-bottom: 2px solid var(--pearl-primary);
             padding-bottom: 10px;
+            font-weight: 600;
         }
+        
         h2 {
-            color: #333;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            color: var(--pearl-dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
+        
         h3 {
-            color: #666;
-            margin-top: 25px;
+            color: var(--pearl-muted);
+            margin-top: 1.5rem;
+            font-weight: 500;
         }
-        ul {
-            margin-left: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
+        
         .back-link {
-            display: inline-block;
-            background: #007AFF;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-bottom: 20px;
+            background: var(--pearl-primary);
+            border: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
         }
+        
         .back-link:hover {
-            background: #0056b3;
+            background: var(--pearl-secondary);
         }
+        
         .highlight {
             background: #fff3cd;
-            padding: 15px;
-            border-radius: 6px;
             border-left: 4px solid #ffc107;
-            margin: 20px 0;
+            border-radius: 6px;
+        }
+        
+        ul {
+            margin-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Legal Documents</a>
-        
-        <h1>Privacy Policy</h1>
-        <p><strong>Last updated:</strong> January 2025</p>
-        
-        <div class="highlight">
-            <strong>Important:</strong> Pearl is designed with your privacy and medical data security as our top priority. All your medical knowledge and clinical pearls are stored locally on your device by default.
-        </div>
-        
-        <h2>1. Introduction</h2>
-        <p>Pearl ("we," "our," or "us") respects your privacy and is committed to protecting your personal and medical information. This Privacy Policy explains how we collect, use, store, and protect your data when you use the Pearl app.</p>
-        
-        <h2>2. Information We Collect</h2>
-        
-        <h3>2.1 Medical Content You Create</h3>
-        <ul>
-            <li><strong>Text Pearls:</strong> Medical notes, clinical pearls, and educational content you write</li>
-            <li><strong>Audio Pearls:</strong> Voice recordings with speech-to-text transcriptions</li>
-            <li><strong>Photo Pearls:</strong> Images, diagrams, and visual medical content you capture</li>
-            <li><strong>Tags and Categories:</strong> Medical specialty tags and organizational labels</li>
-        </ul>
-        
-        <h3>2.2 App Usage Data</h3>
-        <ul>
-            <li>Feature usage statistics to improve app functionality</li>
-            <li>Crash reports and performance metrics</li>
-            <li>App preferences and settings</li>
-        </ul>
-        
-        <h3>2.3 Device Information</h3>
-        <ul>
-            <li>Device type and operating system version</li>
-            <li>App version and installation information</li>
-            <li>iCloud account information (if backup is enabled)</li>
-        </ul>
-        
-        <h2>3. How We Use Your Information</h2>
-        <ul>
-            <li><strong>Provide Services:</strong> Store and organize your medical knowledge</li>
-            <li><strong>Speech-to-Text:</strong> Convert audio recordings to searchable text</li>
-            <li><strong>iCloud Backup:</strong> Securely backup your data (if enabled)</li>
-            <li><strong>App Improvement:</strong> Enhance functionality and user experience</li>
-            <li><strong>Support:</strong> Provide customer service and technical support</li>
-        </ul>
-        
-        <h2>4. Data Storage and Security</h2>
-        
-        <h3>4.1 Local Storage</h3>
-        <ul>
-            <li>All data is stored locally on your device by default</li>
-            <li>Your medical content never leaves your device unless you enable iCloud backup</li>
-            <li>Audio files and transcriptions are stored in your device's secure file system</li>
-            <li>Photos are stored in your device's photo library</li>
-        </ul>
-        
-        <h3>4.2 iCloud Backup (Optional)</h3>
-        <ul>
-            <li>If enabled, your data is encrypted and stored in Apple's iCloud</li>
-            <li>iCloud backup follows Apple's security standards and encryption protocols</li>
-            <li>You can disable iCloud backup at any time in your device settings</li>
-            <li>We do not have access to your iCloud data</li>
-        </ul>
-        
-        <h3>4.3 Security Measures</h3>
-        <ul>
-            <li>All data transmission uses industry-standard encryption</li>
-            <li>Local data is protected by your device's security features</li>
-            <li>We do not store your medical data on our servers</li>
-            <li>Regular security audits and updates</li>
-        </ul>
-        
-        <h2>5. Data Sharing and Third Parties</h2>
-        <ul>
-            <li><strong>No Medical Data Sharing:</strong> We do not share your medical content with third parties</li>
-            <li><strong>Apple Services:</strong> iCloud backup and App Store analytics (if enabled)</li>
-            <li><strong>Speech Recognition:</strong> Audio processing for transcription (handled securely by Apple)</li>
-            <li><strong>Legal Requirements:</strong> Only if required by law or to protect user safety</li>
-        </ul>
-        
-        <h2>6. Your Rights and Choices</h2>
-        <ul>
-            <li><strong>Access:</strong> View all your data within the app</li>
-            <li><strong>Export:</strong> Export your data in various formats</li>
-            <li><strong>Delete:</strong> Remove individual pearls or all data</li>
-            <li><strong>Backup Control:</strong> Enable or disable iCloud backup</li>
-            <li><strong>App Permissions:</strong> Control camera, microphone, and file access</li>
-        </ul>
-        
-        <h2>7. Data Retention</h2>
-        <ul>
-            <li>Your data remains on your device until you delete it</li>
-            <li>iCloud backups follow Apple's retention policies</li>
-            <li>Deleted data is permanently removed from your device</li>
-            <li>We do not maintain copies of your deleted data</li>
-        </ul>
-        
-        <h2>8. Children's Privacy</h2>
-        <p>Pearl is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you are a parent and believe your child has provided us with personal information, please contact us.</p>
-        
-        <h2>9. International Users</h2>
-        <p>Pearl is designed to comply with privacy laws in your jurisdiction. If you are using Pearl outside the United States, please be aware that your information may be transferred to, stored, and processed in the United States where our servers are located.</p>
-        
-        <h2>10. Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the "Last updated" date. Your continued use of Pearl after any changes constitutes acceptance of the updated policy.</p>
-        
-        <h2>11. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
-        <ul>
-            <li><strong>Email:</strong> privacy@pearlapp.com</li>
-            <li><strong>Support:</strong> <a href="support.html">Contact Support</a></li>
-        </ul>
-        
-        <div class="highlight">
-            <strong>Medical Disclaimer:</strong> Pearl is a knowledge management tool and should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.
+    <div class="container py-5">
+        <div class="card main-card">
+            <div class="card-body p-5">
+                <a href="index.html" class="btn back-link mb-4">← Back to Legal Documents</a>
+                
+                <h1>Privacy Policy</h1>
+                <p class="text-muted"><strong>Last updated:</strong> January 2025</p>
+                
+                <div class="alert highlight" role="alert">
+                    <strong>Important:</strong> Pearl is designed with your privacy and medical data security as our top priority. All your medical knowledge and clinical pearls are stored locally on your device by default.
+                </div>
+                
+                <h2>1. Introduction</h2>
+                <p>Pearl ("we," "our," or "us") respects your privacy and is committed to protecting your personal and medical information. This Privacy Policy explains how we collect, use, store, and protect your data when you use the Pearl app.</p>
+                
+                <h2>2. Information We Collect</h2>
+                
+                <h3>2.1 Medical Content You Create</h3>
+                <ul>
+                    <li><strong>Text Pearls:</strong> Medical notes, clinical pearls, and educational content you write</li>
+                    <li><strong>Audio Pearls:</strong> Voice recordings with speech-to-text transcriptions</li>
+                    <li><strong>Photo Pearls:</strong> Images, diagrams, and visual medical content you capture</li>
+                    <li><strong>Tags and Categories:</strong> Medical specialty tags and organizational labels</li>
+                </ul>
+                
+                <h3>2.2 App Usage Data</h3>
+                <ul>
+                    <li>Feature usage statistics to improve app functionality</li>
+                    <li>Crash reports and performance metrics</li>
+                    <li>App preferences and settings</li>
+                </ul>
+                
+                <h3>2.3 Device Information</h3>
+                <ul>
+                    <li>Device type and operating system version</li>
+                    <li>App version and installation information</li>
+                    <li>iCloud account information (if backup is enabled)</li>
+                </ul>
+                
+                <h2>3. How We Use Your Information</h2>
+                <ul>
+                    <li><strong>Provide Services:</strong> Store and organize your medical knowledge</li>
+                    <li><strong>Speech-to-Text:</strong> Convert audio recordings to searchable text</li>
+                    <li><strong>iCloud Backup:</strong> Securely backup your data (if enabled)</li>
+                    <li><strong>App Improvement:</strong> Enhance functionality and user experience</li>
+                    <li><strong>Support:</strong> Provide customer service and technical support</li>
+                </ul>
+                
+                <h2>4. Data Storage and Security</h2>
+                
+                <h3>4.1 Local Storage</h3>
+                <ul>
+                    <li>All data is stored locally on your device by default</li>
+                    <li>Your medical content never leaves your device unless you enable iCloud backup</li>
+                    <li>Audio files and transcriptions are stored in your device's secure file system</li>
+                    <li>Photos are stored in your device's photo library</li>
+                </ul>
+                
+                <h3>4.2 iCloud Backup (Optional)</h3>
+                <ul>
+                    <li>If enabled, your data is encrypted and stored in Apple's iCloud</li>
+                    <li>iCloud backup follows Apple's security standards and encryption protocols</li>
+                    <li>You can disable iCloud backup at any time in your device settings</li>
+                    <li>We do not have access to your iCloud data</li>
+                </ul>
+                
+                <h3>4.3 Security Measures</h3>
+                <ul>
+                    <li>All data transmission uses industry-standard encryption</li>
+                    <li>Local data is protected by your device's security features</li>
+                    <li>We do not store your medical data on our servers</li>
+                    <li>Regular security audits and updates</li>
+                </ul>
+                
+                <h2>5. Data Sharing and Third Parties</h2>
+                <ul>
+                    <li><strong>No Medical Data Sharing:</strong> We do not share your medical content with third parties</li>
+                    <li><strong>Apple Services:</strong> iCloud backup and App Store analytics (if enabled)</li>
+                    <li><strong>Speech Recognition:</strong> Audio processing for transcription (handled securely by Apple)</li>
+                    <li><strong>Legal Requirements:</strong> Only if required by law or to protect user safety</li>
+                </ul>
+                
+                <h2>6. Your Rights and Choices</h2>
+                <ul>
+                    <li><strong>Access:</strong> View all your data within the app</li>
+                    <li><strong>Export:</strong> Export your data in various formats</li>
+                    <li><strong>Delete:</strong> Remove individual pearls or all data</li>
+                    <li><strong>Backup Control:</strong> Enable or disable iCloud backup</li>
+                    <li><strong>App Permissions:</strong> Control camera, microphone, and file access</li>
+                </ul>
+                
+                <h2>7. Data Retention</h2>
+                <ul>
+                    <li>Your data remains on your device until you delete it</li>
+                    <li>iCloud backups follow Apple's retention policies</li>
+                    <li>Deleted data is permanently removed from your device</li>
+                    <li>We do not maintain copies of your deleted data</li>
+                </ul>
+                
+                <h2>8. Children's Privacy</h2>
+                <p>Pearl is not intended for children under 13. We do not knowingly collect personal information from children under 13. If you are a parent and believe your child has provided us with personal information, please contact us.</p>
+                
+                <h2>9. International Users</h2>
+                <p>Pearl is designed to comply with privacy laws in your jurisdiction. If you are using Pearl outside the United States, please be aware that your information may be transferred to, stored, and processed in the United States where our servers are located.</p>
+                
+                <h2>10. Changes to This Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the "Last updated" date. Your continued use of Pearl after any changes constitutes acceptance of the updated policy.</p>
+                
+                <h2>11. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+                <ul>
+                    <li><strong>Email:</strong> privacy@pearlapp.com</li>
+                    <li><strong>Support:</strong> <a href="support.html">Contact Support</a></li>
+                </ul>
+                
+                <div class="alert highlight" role="alert">
+                    <strong>Medical Disclaimer:</strong> Pearl is a knowledge management tool and should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html> 

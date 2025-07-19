@@ -4,177 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support & Contact - Pearl</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom styles -->
     <style>
+        :root {
+            --pearl-primary: #007AFF;
+            --pearl-secondary: #0056b3;
+            --pearl-light: #f8f9fa;
+            --pearl-dark: #333;
+            --pearl-muted: #666;
+            --pearl-success: #28a745;
+            --pearl-info: #17a2b8;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--pearl-light);
+            color: var(--pearl-dark);
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8f9fa;
-            color: #333;
         }
+        
         .container {
+            max-width: 800px;
+        }
+        
+        .main-card {
             background: white;
-            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: none;
         }
+        
         h1 {
-            color: #007AFF;
-            border-bottom: 2px solid #007AFF;
+            color: var(--pearl-primary);
+            border-bottom: 2px solid var(--pearl-primary);
             padding-bottom: 10px;
+            font-weight: 600;
         }
+        
         h2 {
-            color: #333;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            color: var(--pearl-dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
+        
+        h3 {
+            color: var(--pearl-muted);
+            margin-top: 1.5rem;
+            font-weight: 500;
+        }
+        
         .back-link {
-            display: inline-block;
-            background: #007AFF;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-bottom: 20px;
+            background: var(--pearl-primary);
+            border: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
         }
+        
         .back-link:hover {
-            background: #0056b3;
+            background: var(--pearl-secondary);
         }
-        .contact-card {
-            background: #f8f9fa;
-            padding: 20px;
+        
+        .support-card {
+            background: var(--pearl-light);
+            border-left: 4px solid var(--pearl-primary);
             border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #007AFF;
+            transition: all 0.2s ease;
+            height: 100%;
         }
-        .faq-item {
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
+        
+        .support-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info {
+            background: #d1ecf1;
+            border-left: 4px solid var(--pearl-info);
             border-radius: 6px;
         }
+        
+        .faq-item {
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
         .faq-question {
-            font-weight: bold;
-            color: #007AFF;
-            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--pearl-primary);
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-answer {
+            color: var(--pearl-muted);
+            margin-left: 1rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Legal Documents</a>
-        
-        <h1>Support & Contact</h1>
-        <p>We're here to help you get the most out of Pearl!</p>
-        
-        <h2>Contact Information</h2>
-        
-        <div class="contact-card">
-            <h3>📧 General Support</h3>
-            <p><strong>Email:</strong> support@pearlapp.com</p>
-            <p><strong>Response Time:</strong> Within 24-48 hours</p>
+    <div class="container py-5">
+        <div class="card main-card">
+            <div class="card-body p-5">
+                <a href="index.html" class="btn back-link mb-4">← Back to Legal Documents</a>
+                
+                <h1>Support & Contact</h1>
+                <p class="text-muted"><strong>Last updated:</strong> January 2025</p>
+                
+                <div class="alert contact-info" role="alert">
+                    <strong>Need Help?</strong> We're here to support you with any questions about Pearl. Our team typically responds within 24-48 hours.
+                </div>
+                
+                <div class="row g-4 mt-4">
+                    <div class="col-md-6">
+                        <div class="card support-card h-100">
+                            <div class="card-body p-4">
+                                <h3 class="card-title">📧 Email Support</h3>
+                                <p class="card-text">For general questions, feature requests, or technical issues:</p>
+                                <a href="mailto:support@pearlapp.com" class="btn btn-primary">support@pearlapp.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card support-card h-100">
+                            <div class="card-body p-4">
+                                <h3 class="card-title">🔒 Privacy & Legal</h3>
+                                <p class="card-text">For privacy concerns or legal inquiries:</p>
+                                <a href="mailto:privacy@pearlapp.com" class="btn btn-primary">privacy@pearlapp.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="mt-5">Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I backup my data?</div>
+                    <div class="faq-answer">
+                        Pearl offers optional iCloud backup. To enable it, go to your device's Settings > [Your Name] > iCloud > Manage Storage > Pearl, and toggle on iCloud backup. You can also export your data manually through the app's export feature.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I use Pearl on multiple devices?</div>
+                    <div class="faq-answer">
+                        Yes! Pearl supports cross-device synchronization through iCloud. Simply sign in with the same Apple ID on all your devices and enable iCloud backup for Pearl. Your data will sync automatically across iPhone and iPad.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is my medical data secure?</div>
+                    <div class="faq-answer">
+                        Absolutely. Pearl is designed with privacy-first principles. All your data is stored locally on your device by default. iCloud backup is optional and uses Apple's secure encryption. We never access or share your medical content.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How do I export my data?</div>
+                    <div class="faq-answer">
+                        You can export your data in multiple formats through the app's settings. Go to Settings > Export Data to save your pearls as text files, which you can then transfer to your computer or other devices.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What if I lose my device?</div>
+                    <div class="faq-answer">
+                        If you have iCloud backup enabled, you can restore your data on a new device by signing in with the same Apple ID and restoring from iCloud. If you don't have backup enabled, we recommend regularly exporting your data as a safety measure.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Can I get a refund?</div>
+                    <div class="faq-answer">
+                        Refunds are processed through the Apple App Store. You can request a refund through your App Store account or by contacting Apple Support directly. We cannot process refunds ourselves.
+                    </div>
+                </div>
+                
+                <h2 class="mt-5">Contact Information</h2>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>General Support</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Email:</strong> support@pearlapp.com</li>
+                            <li><strong>Response Time:</strong> 24-48 hours</li>
+                            <li><strong>Hours:</strong> Monday-Friday, 9 AM - 5 PM EST</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Legal & Privacy</h3>
+                        <ul class="list-unstyled">
+                            <li><strong>Privacy:</strong> privacy@pearlapp.com</li>
+                            <li><strong>Legal:</strong> legal@pearlapp.com</li>
+                            <li><strong>General:</strong> hello@pearlapp.com</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="alert alert-success mt-4" role="alert">
+                    <strong>Thank you for choosing Pearl!</strong> We're committed to providing excellent support and continuously improving your experience with our app.
+                </div>
+                
+                <div class="text-center mt-4">
+                    <p class="text-muted">
+                        <small>
+                            © 2025 Pearl App. All rights reserved.<br>
+                            For urgent medical matters, please contact your healthcare provider or emergency services.
+                        </small>
+                    </p>
+                </div>
+            </div>
         </div>
-        
-        <div class="contact-card">
-            <h3>🔒 Privacy & Legal</h3>
-            <p><strong>Email:</strong> privacy@pearlapp.com</p>
-            <p><strong>For:</strong> Privacy policy questions, data requests</p>
-        </div>
-        
-        <div class="contact-card">
-            <h3>⚖️ Legal Matters</h3>
-            <p><strong>Email:</strong> legal@pearlapp.com</p>
-            <p><strong>For:</strong> Terms of service, legal inquiries</p>
-        </div>
-        
-        <h2>Frequently Asked Questions</h2>
-        
-        <div class="faq-item">
-            <div class="faq-question">How do I backup my data?</div>
-            <p>Pearl offers iCloud backup. Go to Settings → iCloud Backup → Enable. You can also export your data manually through the app's export feature.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">Can I use Pearl on multiple devices?</div>
-            <p>Yes! With iCloud backup enabled, your pearls will sync across all your iOS devices signed into the same Apple ID.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">How do I export my medical notes?</div>
-            <p>Go to Settings → Export Data. You can export as text files, which you can then save to Files, email, or share with other apps.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">Is my medical data secure?</div>
-            <p>Yes! All data is stored locally on your device by default. iCloud backup is encrypted and optional. We never access your medical content.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">How do I organize my pearls by specialty?</div>
-            <p>Use the tagging feature when creating pearls. You can add multiple tags like "Cardiology", "Emergency Medicine", etc., and filter by tags later.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">Can I edit audio transcriptions?</div>
-            <p>Yes! After recording, you can edit the transcribed text before saving your audio pearl.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">What if I lose my device?</div>
-            <p>If you have iCloud backup enabled, you can restore your pearls on a new device. Always keep regular backups of important medical information.</p>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">How do I search through my pearls?</div>
-            <p>Use the search bar at the top of the main screen. You can search by text content, tags, or pearl type (text, audio, photo).</p>
-        </div>
-        
-        <h2>Technical Support</h2>
-        
-        <h3>Before Contacting Support</h3>
-        <ul>
-            <li>Check that your iOS version is 15.0 or later</li>
-            <li>Ensure you have sufficient storage space</li>
-            <li>Try restarting the app</li>
-            <li>Check your internet connection for iCloud features</li>
-            <li>Update to the latest version of Pearl</li>
-        </ul>
-        
-        <h3>When Contacting Support</h3>
-        <p>Please include the following information:</p>
-        <ul>
-            <li>Your iOS version</li>
-            <li>Pearl app version</li>
-            <li>Device model</li>
-            <li>Detailed description of the issue</li>
-            <li>Screenshots if applicable</li>
-            <li>Steps to reproduce the problem</li>
-        </ul>
-        
-        <h2>Feature Requests</h2>
-        <p>We love hearing from users about new features! Send your suggestions to support@pearlapp.com with "Feature Request" in the subject line.</p>
-        
-        <h2>Bug Reports</h2>
-        <p>If you encounter a bug, please report it to support@pearlapp.com with "Bug Report" in the subject line. Include as much detail as possible to help us fix it quickly.</p>
-        
-        <h2>Medical Disclaimer</h2>
-        <div class="contact-card">
-            <p><strong>Important:</strong> Pearl is a knowledge management tool and should not replace professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.</p>
-        </div>
-        
-        <h2>Response Times</h2>
-        <ul>
-            <li><strong>General Support:</strong> 24-48 hours</li>
-            <li><strong>Privacy/Legal:</strong> 48-72 hours</li>
-            <li><strong>Bug Reports:</strong> 24-72 hours</li>
-            <li><strong>Feature Requests:</strong> We review monthly</li>
-        </ul>
-        
-        <p style="text-align: center; margin-top: 40px; color: #666;">
-            Thank you for using Pearl! We're committed to helping you organize your medical knowledge effectively and securely.
-        </p>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html> 
