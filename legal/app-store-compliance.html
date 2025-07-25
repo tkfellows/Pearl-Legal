@@ -3,842 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pearl - App Store Review Guidelines Compliance</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <title>Pearl - App Store Compliance Guide</title>
     <style>
-        :root {
-            --pearl-primary: #6366f1;
-            --pearl-secondary: #4f46e5;
-            --pearl-accent: #8b5cf6;
-            --pearl-light: #f8fafc;
-            --pearl-dark: #1e293b;
-            --pearl-text: #475569;
-            --pearl-border: #e2e8f0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: var(--pearl-text);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Floating Shapes */
-        .floating-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .main-container {
-            position: relative;
-            z-index: 2;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header */
-        .hero-section {
-            background: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-secondary) 50%, var(--pearl-accent) 100%);
-            color: white;
-            padding: 80px 0 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #f1f5f9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 500;
-            margin: 0 10px;
-        }
-
-        /* Content */
-        .content-section {
-            background: white;
-            flex: 1;
-            padding: 60px 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            color: var(--pearl-dark);
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pearl-primary), var(--pearl-accent));
-            border-radius: 2px;
-        }
-
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .compliance-card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--pearl-border);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .compliance-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pearl-primary), var(--pearl-accent));
-        }
-
-        .compliance-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .compliance-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .compliance-title {
-            color: var(--pearl-dark);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0;
-            flex: 1;
-        }
-
-        .status-badge {
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 15px;
-            white-space: nowrap;
-        }
-
-        .status-compliant {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-
-        .status-not-applicable {
-            background: linear-gradient(135deg, #6b7280, #4b5563);
-            color: white;
-        }
-
-        .compliance-content {
-            color: var(--pearl-text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-        }
-
-        .requirement {
-            background: var(--pearl-light);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--pearl-primary);
-        }
-
-        .requirement strong {
-            color: var(--pearl-dark);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .implementation {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--pearl-accent);
-        }
-
-        .implementation strong {
-            color: var(--pearl-dark);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--pearl-dark);
-            color: white;
-            padding: 60px 0 40px;
-            text-align: center;
-        }
-
-        .footer-content {
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
-        .footer-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--pearl-primary), var(--pearl-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        h1, h2, h3 {
+            color: #2c3e50;
         }
-
-        .footer-info {
-            color: #cbd5e1;
+        .section {
             margin-bottom: 30px;
-            line-height: 1.6;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
         }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+        .warning {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
         }
-
-        .footer-link {
-            color: var(--pearl-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 10px 20px;
-            border-radius: 8px;
-            background: rgba(99, 102, 241, 0.1);
-            transition: all 0.3s ease;
+        .success {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
         }
-
-        .footer-link:hover {
-            color: white;
-            background: var(--pearl-primary);
-            text-decoration: none;
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
         }
-
-        .footer-date {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            border-top: 1px solid #334155;
-            padding-top: 20px;
+        ul {
+            padding-left: 20px;
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .compliance-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .compliance-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .status-badge {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
+        li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
-    <!-- Floating Shapes -->
-    <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
+    <h1>Pearl - App Store Compliance Guide</h1>
+    <p><strong>Last Updated:</strong> January 2025</p>
+    <p><strong>Version:</strong> 2.0</p>
+
+    <div class="section">
+        <h2>App Overview</h2>
+        <p><strong>App Name:</strong> Pearl - Medical Knowledge Management</p>
+        <p><strong>Category:</strong> Medical (Health & Fitness)</p>
+        <p><strong>Target Audience:</strong> Healthcare professionals, medical students, and healthcare providers</p>
+        <p><strong>Primary Function:</strong> Medical knowledge management and clinical pearl organization</p>
     </div>
 
-    <div class="main-container">
-        <!-- Hero Section -->
-        <section class="hero-section" data-aos="fade-down">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        <i class="fab fa-apple me-3"></i>
-                        App Store Review Guidelines Compliance
-                    </h1>
-                    <p class="hero-subtitle">Pearl - Medical Knowledge Management App</p>
-                    <div class="hero-badges">
-                        <span class="hero-badge">
-                            <i class="fas fa-check-circle me-2"></i>
-                            Safety & Privacy
-                        </span>
-                        <span class="hero-badge">
-                            <i class="fas fa-rocket me-2"></i>
-                            Performance Ready
-                        </span>
-                        <span class="hero-badge">
-                            <i class="fas fa-shield-alt me-2"></i>
-                            Legal Compliant
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="section">
+        <h2>Key Features & Compliance Status</h2>
+        
+        <h3>✅ Text Pearls</h3>
+        <ul>
+            <li>Rich text medical note creation</li>
+            <li>Medical specialty tagging system</li>
+            <li>Local storage with optional iCloud backup</li>
+            <li><strong>Compliance:</strong> Fully compliant - no medical advice provided</li>
+        </ul>
 
-        <!-- Content Section -->
-        <section class="content-section">
-            <div class="container">
-                <!-- Safety & Privacy -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-shield-alt me-3"></i>
-                        Safety & Privacy
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">App Privacy</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must request permission to access user data and explain how the data will be used.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl requests specific permissions (camera, microphone, photo library, speech recognition) with clear explanations of medical use cases. All data is stored locally on the user's device.
-                                </div>
-                            </div>
-                        </div>
+        <h3>✅ Audio Pearls with Speech Recognition</h3>
+        <ul>
+            <li>Voice recording with Apple's Speech Framework</li>
+            <li>Automatic speech-to-text transcription</li>
+            <li>Searchable transcription content</li>
+            <li>Medical accuracy disclaimers included</li>
+            <li><strong>Compliance:</strong> Compliant - uses Apple's native APIs, includes disclaimers</li>
+        </ul>
 
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Data Collection & Storage</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must have a privacy policy and handle user data appropriately.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl has a comprehensive privacy policy. All medical data is stored locally with optional iCloud backup. No data is transmitted to external servers.
-                                </div>
-                            </div>
-                        </div>
+        <h3>✅ Photo Pearls with Dual-Save System</h3>
+        <ul>
+            <li>Image capture and storage</li>
+            <li>Professional cropping with TOCropViewController</li>
+            <li>Dual-save system: original + cropped versions</li>
+            <li>Medical documentation support</li>
+            <li><strong>Compliance:</strong> Compliant - local storage, no cloud processing</li>
+        </ul>
 
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Health & Medical Information</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps that handle health information must comply with applicable laws and regulations.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is designed for medical knowledge management, not patient care. Users are responsible for their own data and compliance with HIPAA and other regulations.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Performance & Functionality -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-rocket me-3"></i>
-                        Performance & Functionality
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">App Completeness</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must be complete and functional when submitted.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is fully functional with all advertised features working: text, audio, and photo pearl creation; tagging system; iCloud backup; search functionality.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Beta Testing</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps should be thoroughly tested before submission.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl has been tested on multiple devices and iOS versions. All core functionality has been validated.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Accurate Metadata</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    App metadata must be accurate and not misleading.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl's description accurately reflects its functionality as a medical knowledge management tool for healthcare professionals.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business & Monetization -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-dollar-sign me-3"></i>
-                        Business & Monetization
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Pricing</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    App pricing must be clear and consistent.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is a one-time purchase ($4.99) with no in-app purchases, subscriptions, or hidden fees.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">In-App Purchases</h4>
-                                <span class="status-badge status-not-applicable">Not Applicable</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    In-app purchases must use Apple's payment system.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl does not include any in-app purchases.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Design & User Experience -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-palette me-3"></i>
-                        Design & User Experience
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">User Interface</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must follow Apple's Human Interface Guidelines.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl uses native SwiftUI components and follows Apple's design principles with proper spacing, typography, and accessibility features.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Accessibility</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps should be accessible to users with disabilities.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl includes VoiceOver support, proper contrast ratios, and accessible navigation for users with disabilities.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">App Store Screenshots</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Screenshots must accurately represent the app's functionality.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Screenshots will show actual app functionality without misleading elements or overlays.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Legal & Intellectual Property -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-balance-scale me-3"></i>
-                        Legal & Intellectual Property
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Intellectual Property</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must not infringe on intellectual property rights.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is an original application created by the developer. All code, design, and content are original or properly licensed.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Legal Compliance</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must comply with all applicable laws and regulations.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl complies with relevant privacy laws and medical app regulations. Users are responsible for their own compliance with medical practice laws.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technical Requirements -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-cogs me-3"></i>
-                        Technical Requirements
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">App Binary</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must be properly signed and not contain malicious code.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is properly signed with the developer's certificate and contains only legitimate, functional code.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">API Usage</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must use APIs as intended and not interfere with system functionality.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl uses standard iOS APIs for camera, microphone, speech recognition, and iCloud services as intended.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Encryption</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps using encryption must declare their usage.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl declares "ITSAppUsesNonExemptEncryption: false" as it only uses standard iOS encryption.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content & Behavior -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-file-alt me-3"></i>
-                        Content & Behavior
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Objectionable Content</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must not contain objectionable content.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is a professional medical app with no objectionable content. All content is medical and educational in nature.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Spam</h4>
-                                <span class="status-badge status-not-applicable">Not Applicable</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps must not send spam or unwanted communications.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl does not send any communications or notifications to users.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer" data-aos="fade-up">
-            <div class="container">
-                <div class="footer-content">
-                    <h3 class="footer-title">
-                        <i class="fas fa-gem me-2"></i>
-                        Pearl - Medical Knowledge Management
-                    </h3>
-                    <div class="footer-info">
-                        <p>Professional medical knowledge management for healthcare professionals worldwide.</p>
-                        <p>For questions about this compliance document, contact: <a href="mailto:support@pearlapp.com" class="footer-link">support@pearlapp.com</a></p>
-                    </div>
-                    <div class="footer-links">
-                        <a href="privacy-policy.html" class="footer-link">
-                            <i class="fas fa-shield-alt me-2"></i>
-                            Privacy Policy
-                        </a>
-                        <a href="terms-of-service.html" class="footer-link">
-                            <i class="fas fa-file-contract me-2"></i>
-                            Terms of Service
-                        </a>
-                        <a href="medical-app-compliance.html" class="footer-link">
-                            <i class="fas fa-user-md me-2"></i>
-                            Medical Compliance
-                        </a>
-                        <a href="support.html" class="footer-link">
-                            <i class="fas fa-headset me-2"></i>
-                            Support
-                        </a>
-                    </div>
-                    <div class="footer-date">
-                        <p><i class="fas fa-calendar-alt me-2"></i>Created: July 2025 | Last updated: July 2025</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <h3>✅ iCloud Integration</h3>
+        <ul>
+            <li>Secure CloudKit backup</li>
+            <li>End-to-end encryption</li>
+            <li>User-controlled backup options</li>
+            <li><strong>Compliance:</strong> Compliant - uses Apple's secure infrastructure</li>
+        </ul>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-    </script>
+    <div class="section">
+        <h2>Medical Compliance Requirements</h2>
+        
+        <div class="success">
+            <h3>✅ HIPAA Compliance</h3>
+            <ul>
+                <li>All data stored locally by default</li>
+                <li>No external data transmission</li>
+                <li>Optional iCloud backup with encryption</li>
+                <li>User controls all data sharing</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h3>✅ Medical Disclaimer Implementation</h3>
+            <ul>
+                <li>Clear disclaimers in app and documentation</li>
+                <li>No medical advice provided</li>
+                <li>Speech-to-text accuracy disclaimers</li>
+                <li>User responsibility statements</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h3>✅ Privacy-First Design</h3>
+            <ul>
+                <li>No analytics or tracking</li>
+                <li>No third-party data sharing</li>
+                <li>Transparent privacy policy</li>
+                <li>User data ownership clearly stated</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Technical Implementation</h2>
+        
+        <h3>Dependencies & Licenses</h3>
+        <ul>
+            <li><strong>TOCropViewController:</strong> MIT License - for image cropping</li>
+            <li><strong>Apple Frameworks:</strong> Speech, Vision, AVFoundation - native iOS APIs</li>
+            <li><strong>No third-party analytics or tracking libraries</strong></li>
+        </ul>
+
+        <h3>Data Storage</h3>
+        <ul>
+            <li><strong>Local Storage:</strong> Core Data with file system for media</li>
+            <li><strong>Cloud Storage:</strong> CloudKit (optional, user-controlled)</li>
+            <li><strong>Export Formats:</strong> JSON, CSV, XML for data portability</li>
+        </ul>
+
+        <h3>Security Measures</h3>
+        <ul>
+            <li>File protection with <code>.completeFileProtection</code></li>
+            <li>iCloud encryption for backups</li>
+            <li>No external API calls for medical data</li>
+            <li>Device security integration (Face ID, Touch ID)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>App Store Guidelines Compliance</h2>
+        
+        <div class="success">
+            <h3>✅ Guideline 1.1 - Safety</h3>
+            <p>No harmful content, medical disclaimers included, appropriate for medical professionals</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 1.2 - User Generated Content</h3>
+            <p>All content is user-generated for personal use, no sharing features that could violate privacy</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 1.3 - Kids</h3>
+            <p>Not targeted at children, medical professional audience</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 2.1 - Performance</h3>
+            <p>App functions as described, no crashes or performance issues</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 2.2 - Beta Testing</h3>
+            <p>No beta features or test content in production</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 2.3 - Accurate Metadata</h3>
+            <p>App description accurately reflects functionality</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 2.4 - Hardware Compatibility</h3>
+            <p>Compatible with iOS 16.0+ devices</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 2.5 - Software Requirements</h3>
+            <p>Uses only public APIs, no private frameworks</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 3.1 - Payments</h3>
+            <p>No in-app purchases or subscriptions</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 4.1 - Privacy</h3>
+            <p>Comprehensive privacy policy, no data collection, user-controlled data</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 4.2 - Location Services</h3>
+            <p>No location services used</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 4.3 - HealthKit</h3>
+            <p>No HealthKit integration (not a health tracking app)</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 4.4 - Medical Information</h3>
+            <p>Clear medical disclaimers, no medical advice provided, knowledge management tool only</p>
+        </div>
+
+        <div class="success">
+            <h3>✅ Guideline 4.5 - Developer Code of Conduct</h3>
+            <p>Professional medical app, appropriate content and behavior</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Required App Store Information</h2>
+        
+        <h3>App Store Listing</h3>
+        <ul>
+            <li><strong>App Name:</strong> Pearl - Medical Knowledge Management</li>
+            <li><strong>Subtitle:</strong> Professional medical knowledge organization</li>
+            <li><strong>Category:</strong> Health & Fitness</li>
+            <li><strong>Age Rating:</strong> 4+ (no objectionable content)</li>
+            <li><strong>Price:</strong> Free</li>
+        </ul>
+
+        <h3>Keywords</h3>
+        <p>medical, knowledge, management, clinical, pearls, healthcare, doctor, physician, medical notes, medical education, clinical documentation</p>
+
+        <h3>Description</h3>
+        <p>Pearl is a comprehensive medical knowledge management app designed specifically for healthcare professionals. Created by a practicing physician, Pearl helps you capture, organize, and retrieve clinical pearls, case notes, and medical insights with powerful features including text notes, voice recordings with transcription, and photo documentation with professional cropping tools.</p>
+    </div>
+
+    <div class="section">
+        <h2>Submission Checklist</h2>
+        
+        <div class="success">
+            <h3>✅ Pre-Submission</h3>
+            <ul>
+                <li>App tested on multiple devices</li>
+                <li>All features working correctly</li>
+                <li>Privacy policy updated</li>
+                <li>Terms of service updated</li>
+                <li>Medical disclaimers included</li>
+                <li>No debug code or test content</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h3>✅ App Store Connect</h3>
+            <ul>
+                <li>App information complete</li>
+                <li>Screenshots for all device sizes</li>
+                <li>App preview video (if applicable)</li>
+                <li>Keywords optimized</li>
+                <li>Description accurate and compelling</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <h3>✅ Legal Requirements</h3>
+            <ul>
+                <li>Privacy policy accessible in app</li>
+                <li>Terms of service accessible in app</li>
+                <li>Medical disclaimers prominently displayed</li>
+                <li>Contact information provided</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Contact Information</h2>
+        <p><strong>Developer:</strong> Tyee Fellows, MD, MSc, CCFP</p>
+        <p><strong>Email:</strong> support@pearlapp.com</p>
+        <p><strong>Privacy:</strong> privacy@pearlapp.com</p>
+        <p><strong>Website:</strong> https://github.com/tkfellows/Pearl</p>
+    </div>
+
+    <div class="warning">
+        <h3>Important Notes</h3>
+        <ul>
+            <li>This app is designed for medical professionals and students</li>
+            <li>No medical advice is provided - users must verify all information</li>
+            <li>Speech-to-text transcriptions should be verified for accuracy</li>
+            <li>Users are responsible for compliance with institutional policies</li>
+            <li>Regular updates may be required to maintain compliance</li>
+        </ul>
+    </div>
 </body>
 </html> 
