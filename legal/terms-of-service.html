@@ -4,202 +4,773 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - Pearl Medical Knowledge Management</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
     <style>
+        :root {
+            /* Pearl App Color Palette - Based on app icon */
+            --pearl-primary: #6366f1;
+            --pearl-secondary: #4f46e5;
+            --pearl-accent: #8b5cf6;
+            --pearl-light: #f8fafc;
+            --pearl-dark: #1e293b;
+            --pearl-muted: #64748b;
+            --pearl-success: #10b981;
+            --pearl-warning: #f59e0b;
+            --pearl-error: #ef4444;
+            --pearl-info: #3b82f6;
+            --pearl-white: #ffffff;
+            --pearl-gray-50: #f9fafb;
+            --pearl-gray-100: #f3f4f6;
+            --pearl-gray-200: #e5e7eb;
+            --pearl-gray-300: #d1d5db;
+            --pearl-gray-400: #9ca3af;
+            --pearl-gray-500: #6b7280;
+            --pearl-gray-600: #4b5563;
+            --pearl-gray-700: #374151;
+            --pearl-gray-800: #1f2937;
+            --pearl-gray-900: #111827;
+            
+            /* Gradients */
+            --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
+            --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --pearl-gradient-dark: linear-gradient(135deg, var(--pearl-dark) 0%, var(--pearl-gray-800) 100%);
+            
+            /* Shadows */
+            --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --pearl-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Border Radius */
+            --pearl-radius-sm: 0.375rem;
+            --pearl-radius: 0.5rem;
+            --pearl-radius-lg: 0.75rem;
+            --pearl-radius-xl: 1rem;
+            --pearl-radius-2xl: 1.5rem;
+            --pearl-radius-full: 9999px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--pearl-gradient-light);
+            color: var(--pearl-dark);
             line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header Section */
+        .header-section {
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--pearl-radius-full);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Content Card */
+        .content-card {
+            background: var(--pearl-white);
+            border-radius: var(--pearl-radius-2xl);
+            padding: 3rem;
+            margin: -2rem auto 3rem;
+            box-shadow: var(--pearl-shadow-xl);
+            border: 1px solid var(--pearl-gray-200);
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: var(--pearl-radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--pearl-white);
+            padding: 0 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .highlight-box h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .highlight-box p {
+            color: #78350f;
+            margin-bottom: 0;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 1px solid #ef4444;
+            border-radius: var(--pearl-radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .warning-box::before {
+            content: '🚨';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--pearl-white);
+            padding: 0 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .warning-box h4 {
+            color: #991b1b;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .warning-box p {
+            color: #7f1d1d;
+            margin-bottom: 0;
+        }
+        
+        /* Table of Contents */
+        .table-of-contents {
+            background: var(--pearl-gray-50);
+            border: 1px solid var(--pearl-gray-200);
+            border-radius: var(--pearl-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .toc-list a {
+            color: var(--pearl-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-list a:hover {
+            color: var(--pearl-accent);
+            transform: translateX(5px);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--pearl-dark);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--pearl-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-gray-700);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Content Styling */
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1rem;
+            color: var(--pearl-gray-700);
+            line-height: 1.7;
+        }
+        
+        .content-section ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: var(--pearl-gray-700);
+            position: relative;
+        }
+        
+        .content-section li::before {
+            content: '✓';
+            color: var(--pearl-success);
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
+        }
+        
+        .content-section .prohibited li::before {
+            content: '✗';
+            color: var(--pearl-error);
+        }
+        
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            background: var(--pearl-gray-50);
+            border: 1px solid var(--pearl-gray-200);
+            border-radius: var(--pearl-radius-lg);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--pearl-shadow-lg);
+            border-color: var(--pearl-primary);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--pearl-gradient);
+            border-radius: var(--pearl-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-description {
+            color: var(--pearl-gray-600);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--pearl-gradient-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            color: #333;
         }
-        h1 {
-            color: #008080;
-            border-bottom: 2px solid #008080;
-            padding-bottom: 10px;
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        h2 {
-            color: #008080;
-            margin-top: 30px;
+        
+        .footer-text {
+            color: var(--pearl-gray-400);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
         }
-        .disclaimer {
-            background-color: #ffe6e6;
-            border: 1px solid #ffcccc;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--pearl-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
-        .important {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--pearl-shadow-lg);
+            color: white;
         }
-        ul {
-            padding-left: 20px;
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+                margin: -1rem auto 2rem;
+            }
+            
+            .header-section {
+                padding: 3rem 0 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        li {
-            margin-bottom: 8px;
+        
+        @media (max-width: 480px) {
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .header-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-title {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Terms of Service</h1>
-    <p><strong>Last updated: January 2025</strong></p>
-    
-    <div class="disclaimer">
-        <strong>Medical Disclaimer:</strong> Pearl is a knowledge management tool and does not constitute medical advice. The app is not a substitute for professional medical consultation, diagnosis, or treatment.
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="main-container">
+            <div class="header-content text-center" data-aos="fade-up">
+                <h1 class="header-title">Terms of Service</h1>
+                <p class="header-subtitle">
+                    Complete terms and conditions governing your use of Pearl. Professional legal framework ensuring 
+                    compliance with App Store guidelines and medical industry standards.
+                </p>
+                <div class="header-badge">
+                    <i class="fas fa-file-contract"></i>
+                    Last updated: January 2025
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-card" data-aos="fade-up">
+            <!-- Medical Disclaimer -->
+            <div class="highlight-box" data-aos="fade-up" data-aos-delay="200">
+                <h4><i class="fas fa-exclamation-triangle"></i> Medical Disclaimer</h4>
+                <p>Pearl is a knowledge management tool and does not constitute medical advice. The app is not a substitute for professional medical consultation, diagnosis, or treatment.</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="table-of-contents" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="toc-title">
+                    <i class="fas fa-list"></i>
+                    Table of Contents
+                </h3>
+                <ul class="toc-list">
+                    <li><a href="#acceptance"><i class="fas fa-check-circle"></i> Acceptance of Terms</a></li>
+                    <li><a href="#description"><i class="fas fa-info-circle"></i> Description of Service</a></li>
+                    <li><a href="#acceptable-use"><i class="fas fa-user-check"></i> Acceptable Use</a></li>
+                    <li><a href="#medical-disclaimer"><i class="fas fa-user-md"></i> Medical Disclaimer</a></li>
+                    <li><a href="#user-accounts"><i class="fas fa-user"></i> User Accounts</a></li>
+                    <li><a href="#intellectual-property"><i class="fas fa-copyright"></i> Intellectual Property</a></li>
+                    <li><a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy and Data Protection</a></li>
+                    <li><a href="#limitations"><i class="fas fa-exclamation-triangle"></i> Limitations of Liability</a></li>
+                    <li><a href="#termination"><i class="fas fa-times-circle"></i> Termination</a></li>
+                    <li><a href="#governing-law"><i class="fas fa-balance-scale"></i> Governing Law</a></li>
+                    <li><a href="#changes"><i class="fas fa-edit"></i> Changes to Terms</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Information</a></li>
+                </ul>
+            </div>
+
+            <!-- Acceptance of Terms -->
+            <div class="content-section" id="acceptance" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-check-circle"></i>
+                    Acceptance of Terms
+                </h2>
+                <p>By downloading, installing, or using the Pearl application ("App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+                <p>These Terms constitute a legally binding agreement between you and the developer of Pearl regarding your use of the App. Your continued use of the App after any changes to these Terms constitutes acceptance of the modified Terms.</p>
+            </div>
+
+            <!-- Description of Service -->
+            <div class="content-section" id="description" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Description of Service
+                </h2>
+                <p>Pearl is a medical knowledge management application designed for healthcare professionals to:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h4 class="feature-title">Text Pearls</h4>
+                        <p class="feature-description">Create and organize medical notes and clinical pearls with rich text formatting</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h4 class="feature-title">Audio Pearls</h4>
+                        <p class="feature-description">Record and store audio memos with automatic speech-to-text transcription</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h4 class="feature-title">Photo Pearls</h4>
+                        <p class="feature-description">Capture and manage medical images with professional cropping tools</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h4 class="feature-title">Smart Organization</h4>
+                        <p class="feature-description">Tag and categorize medical information by specialty and procedures</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4 class="feature-title">Advanced Search</h4>
+                        <p class="feature-description">Search and retrieve stored medical knowledge including transcribed content</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h4 class="feature-title">iCloud Backup</h4>
+                        <p class="feature-description">Back up data securely to iCloud with end-to-end encryption (optional)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acceptable Use -->
+            <div class="content-section" id="acceptable-use" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-user-check"></i>
+                    Acceptable Use
+                </h2>
+                <p>You agree to use Pearl only for legitimate medical knowledge management purposes:</p>
+                <ul>
+                    <li>Use the App for professional medical knowledge organization</li>
+                    <li>Comply with all applicable laws and regulations</li>
+                    <li>Respect patient privacy and confidentiality</li>
+                    <li>Follow medical privacy laws (HIPAA, etc.) where applicable</li>
+                    <li>Use speech-to-text features responsibly and verify transcriptions for medical accuracy</li>
+                    <li>Use professional photo cropping features appropriately for medical documentation</li>
+                    <li>Maintain appropriate security measures for your device and iCloud account</li>
+                </ul>
+
+                <h3 class="subsection-title">
+                    <i class="fas fa-ban"></i>
+                    Prohibited Uses
+                </h3>
+                <ul class="prohibited">
+                    <li>Using the App for illegal purposes</li>
+                    <li>Violating patient privacy or confidentiality</li>
+                    <li>Sharing medical information inappropriately</li>
+                    <li>Attempting to reverse engineer or modify the App</li>
+                    <li>Using the App to provide medical advice to others</li>
+                    <li>Storing sensitive patient data without proper consent</li>
+                    <li>Using the App for commercial purposes without authorization</li>
+                </ul>
+            </div>
+
+            <!-- Medical Disclaimer -->
+            <div class="content-section" id="medical-disclaimer" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-user-md"></i>
+                    Medical Disclaimer
+                </h2>
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Important Medical Notice</h4>
+                    <p>Pearl is a knowledge management tool and does not provide medical advice, diagnosis, or treatment recommendations. The App is designed to help healthcare professionals organize their own medical knowledge and is not intended for:</p>
+                </div>
+                <ul class="prohibited">
+                    <li>Providing medical advice to patients</li>
+                    <li>Making clinical decisions</li>
+                    <li>Substituting for professional medical consultation</li>
+                    <li>Diagnosing or treating medical conditions</li>
+                </ul>
+                <p>Always consult with qualified healthcare professionals for medical decisions and patient care. Speech-to-text transcriptions are provided for convenience but should be verified for accuracy before use in clinical settings.</p>
+            </div>
+
+            <!-- User Accounts -->
+            <div class="content-section" id="user-accounts" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    User Accounts
+                </h2>
+                <p>Pearl does not require user accounts or registration. All data is stored locally on your device. However, you are responsible for:</p>
+                <ul>
+                    <li>Maintaining the security of your device and iCloud account</li>
+                    <li>Ensuring appropriate access controls for your device</li>
+                    <li>Regular backups of your data</li>
+                    <li>Compliance with institutional policies regarding medical data</li>
+                </ul>
+            </div>
+
+            <!-- Intellectual Property -->
+            <div class="content-section" id="intellectual-property" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-copyright"></i>
+                    Intellectual Property
+                </h2>
+                <p>The Pearl app and its original content, features, and functionality are owned by the developer and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+                <p>You retain ownership of all content you create within the app. The app provides tools for organizing and managing your medical knowledge, but does not claim ownership of your intellectual property.</p>
+            </div>
+
+            <!-- Privacy and Data Protection -->
+            <div class="content-section" id="privacy" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Privacy and Data Protection
+                </h2>
+                <p>Your privacy is important to us. Please review our Privacy Policy, which also governs your use of the App, to understand our practices regarding the collection and use of your information.</p>
+                <p>Pearl is designed with privacy-first principles:</p>
+                <ul>
+                    <li>All data is stored locally on your device by default</li>
+                    <li>No medical data is transmitted to external servers without your permission</li>
+                    <li>iCloud backup is optional and user-controlled</li>
+                    <li>You have complete control over your data</li>
+                </ul>
+            </div>
+
+            <!-- Limitations of Liability -->
+            <div class="content-section" id="limitations" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Limitations of Liability
+                </h2>
+                <p>To the maximum extent permitted by applicable law, the developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+                <ul>
+                    <li>Your use or inability to use the App</li>
+                    <li>Any unauthorized access to or use of your data</li>
+                    <li>Any interruption or cessation of transmission to or from the App</li>
+                    <li>Any bugs, viruses, or other harmful code that may be transmitted through the App</li>
+                    <li>Any errors or omissions in any content or for any loss or damage incurred as a result of the use of any content</li>
+                </ul>
+            </div>
+
+            <!-- Termination -->
+            <div class="content-section" id="termination" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-times-circle"></i>
+                    Termination
+                </h2>
+                <p>You may terminate your use of the App at any time by uninstalling it from your device. Upon termination:</p>
+                <ul>
+                    <li>Your right to use the App will cease immediately</li>
+                    <li>You should export any data you wish to retain before uninstalling</li>
+                    <li>Local data will be removed when the app is uninstalled</li>
+                    <li>iCloud backup data will be retained according to your iCloud settings</li>
+                </ul>
+            </div>
+
+            <!-- Governing Law -->
+            <div class="content-section" id="governing-law" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-balance-scale"></i>
+                    Governing Law
+                </h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which the developer operates, without regard to its conflict of law provisions.</p>
+                <p>Any disputes arising from these Terms or your use of the App shall be resolved through appropriate legal channels in the applicable jurisdiction.</p>
+            </div>
+
+            <!-- Changes to Terms -->
+            <div class="content-section" id="changes" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-edit"></i>
+                    Changes to Terms
+                </h2>
+                <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days notice prior to any new terms taking effect.</p>
+                <p>What constitutes a material change will be determined at our sole discretion. By continuing to access or use the App after any revisions become effective, you agree to be bound by the revised terms.</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="content-section" id="contact" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-envelope"></i>
+                    Contact Information
+                </h2>
+                <p>If you have any questions about these Terms of Service, please contact us:</p>
+                <ul>
+                    <li><strong>Email:</strong> support@pearlapp.com</li>
+                    <li><strong>Privacy:</strong> privacy@pearlapp.com</li>
+                    <li><strong>Website:</strong> https://github.com/tkfellows/Pearl</li>
+                    <li><strong>Developer:</strong> Tyee Fellows, MD, MSc, CCFP</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <h2>Acceptance of Terms</h2>
-    <p>By downloading, installing, or using the Pearl application ("App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="main-container">
+            <div class="footer-content">
+                <h3 class="footer-title">Pearl Medical Knowledge App</h3>
+                <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
+                <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
+                <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Legal Hub
+                </a>
+            </div>
+        </div>
+    </footer>
 
-    <h2>Description of Service</h2>
-    <p>Pearl is a medical knowledge management application designed for healthcare professionals to:</p>
-    <ul>
-        <li>Create and organize medical notes and clinical pearls with rich text formatting</li>
-        <li>Record and store audio memos with automatic speech-to-text transcription using Apple's Speech Framework</li>
-        <li>Capture and manage medical images with professional cropping tools (TOCropViewController)</li>
-        <li>Utilize a dual-save photo system that preserves original images while creating cropped versions for display</li>
-        <li>Tag and categorize medical information by specialty, procedures, and clinical presentations</li>
-        <li>Search and retrieve stored medical knowledge including transcribed audio content</li>
-        <li>Back up data securely to iCloud with end-to-end encryption (optional)</li>
-    </ul>
-
-    <h2>Acceptable Use</h2>
-    <p>You agree to use Pearl only for legitimate medical knowledge management purposes:</p>
-    <ul>
-        <li>Use the App for professional medical knowledge organization</li>
-        <li>Comply with all applicable laws and regulations</li>
-        <li>Respect patient privacy and confidentiality</li>
-        <li>Follow medical privacy laws (HIPAA, etc.) where applicable</li>
-        <li>Use speech-to-text features responsibly and verify transcriptions for medical accuracy</li>
-        <li>Use professional photo cropping features appropriately for medical documentation</li>
-        <li>Maintain appropriate security measures for your device and iCloud account</li>
-    </ul>
-
-    <p><strong>Prohibited Uses:</strong></p>
-    <ul>
-        <li>Using the App for illegal purposes</li>
-        <li>Violating patient privacy or confidentiality</li>
-        <li>Sharing medical information inappropriately</li>
-        <li>Attempting to reverse engineer or modify the App</li>
-        <li>Using the App to provide medical advice to others</li>
-    </ul>
-
-    <h2>Medical Disclaimer</h2>
-    <div class="important">
-        <p><strong>Important:</strong> Pearl is a knowledge management tool and does not provide medical advice, diagnosis, or treatment recommendations. The App is designed to help healthcare professionals organize their own medical knowledge and is not intended for:</p>
-        <ul>
-            <li>Providing medical advice to patients</li>
-            <li>Making clinical decisions</li>
-            <li>Substituting for professional medical consultation</li>
-            <li>Diagnosing or treating medical conditions</li>
-        </ul>
-        <p>Always consult with qualified healthcare professionals for medical decisions and patient care.</p>
-    </div>
-
-    <h2>User Responsibilities</h2>
-    <p>As a user of Pearl, you are responsible for:</p>
-    <ul>
-        <li><strong>Data Accuracy:</strong> Ensuring the accuracy of information you enter</li>
-        <li><strong>Speech Recognition:</strong> Verifying speech-to-text transcriptions for medical accuracy before relying on them</li>
-        <li><strong>Photo Management:</strong> Using photo cropping features responsibly for medical documentation (original images are preserved for future recropping)</li>
-        <li><strong>Security:</strong> Maintaining appropriate security measures for your device and iCloud account</li>
-        <li><strong>Compliance:</strong> Following all applicable laws and regulations</li>
-        <li><strong>Backup:</strong> Regularly backing up your data using iCloud or export features</li>
-        <li><strong>Privacy:</strong> Protecting patient privacy and confidentiality</li>
-        <li><strong>Updates:</strong> Keeping the App updated to the latest version</li>
-    </ul>
-
-    <h2>Data Ownership and Storage</h2>
-    <p><strong>Data Ownership:</strong> You retain full ownership of all data you create in Pearl, including medical notes, audio recordings, speech-to-text transcriptions, and images (both original and cropped versions). We do not claim ownership of your medical knowledge or content.</p>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <p><strong>Data Storage:</strong></p>
-    <ul>
-        <li>All data is stored locally on your device by default</li>
-        <li>Optional iCloud backup encrypts your data in Apple's secure cloud</li>
-        <li>Photo files use a dual-save system: original images are preserved while cropped versions are created for display</li>
-        <li>Speech-to-text transcriptions are stored locally and searchable within the app</li>
-        <li>We do not access, collect, or transmit your medical data to external servers</li>
-        <li>You are responsible for backing up your data</li>
-        <li>Data may be lost if your device is damaged or reset</li>
-    </ul>
-
-    <h2>Privacy and Data Protection</h2>
-    <p>Your privacy is important to us. Please review our Privacy Policy, which is incorporated into these Terms by reference. Key privacy principles:</p>
-    <ul>
-        <li>All data remains on your device</li>
-        <li>No medical information is transmitted to external servers</li>
-        <li>We recommend compliance with medical privacy laws</li>
-        <li>You control what data is shared through device features</li>
-    </ul>
-
-    <h2>Intellectual Property</h2>
-    <p><strong>App Ownership:</strong> Pearl and its content, features, and functionality are owned by us and are protected by copyright, trademark, and other intellectual property laws.</p>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <p><strong>Your Content:</strong> You retain ownership of all content you create in the App. By using the App, you grant us a limited license to use your content solely for providing and improving the App service.</p>
-
-    <h2>Limitation of Liability</h2>
-    <p>Pearl is provided "as is" without warranties of any kind. To the maximum extent permitted by law:</p>
-    <ul>
-        <li>We are not liable for any damages arising from use of the App</li>
-        <li>We are not responsible for lost or corrupted data</li>
-        <li>We are not liable for any medical decisions made using the App</li>
-        <li>We are not responsible for inaccuracies in speech-to-text transcriptions</li>
-        <li>We are not liable for any issues with photo cropping or image processing</li>
-        <li>Our total liability is limited to the amount you paid for the App</li>
-    </ul>
-
-    <h2>Disclaimer of Warranties</h2>
-    <p>The App is provided without warranties of any kind, either express or implied, including but not limited to:</p>
-    <ul>
-        <li>Warranties of merchantability or fitness for a particular purpose</li>
-        <li>Warranties that the App will be error-free or uninterrupted</li>
-        <li>Warranties regarding the accuracy of any information</li>
-    </ul>
-
-    <h2>Indemnification</h2>
-    <p>You agree to indemnify and hold us harmless from any claims, damages, or expenses arising from:</p>
-    <ul>
-        <li>Your use of the App</li>
-        <li>Your violation of these Terms</li>
-        <li>Your violation of any applicable laws or regulations</li>
-        <li>Any medical decisions or actions based on App content</li>
-    </ul>
-
-    <h2>Termination</h2>
-    <p>We may terminate or suspend your access to the App at any time, with or without cause. Upon termination:</p>
-    <ul>
-        <li>Your right to use the App ceases immediately</li>
-        <li>You should export your data before uninstalling</li>
-        <li>We may delete your data from our systems</li>
-    </ul>
-
-    <h2>Changes to Terms</h2>
-    <p>We may update these Terms from time to time. We will notify you of changes by:</p>
-    <ul>
-        <li>Posting updated Terms in the App</li>
-        <li>Updating the "Last updated" date</li>
-        <li>Requiring acceptance of updated terms</li>
-    </ul>
-    <p>Continued use of the App after changes constitutes acceptance of the updated Terms.</p>
-
-    <h2>Governing Law</h2>
-    <p>These Terms are governed by the laws of [Your Jurisdiction]. Any disputes will be resolved in the courts of [Your Jurisdiction].</p>
-
-    <h2>Severability</h2>
-    <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
-
-    <h2>Contact Information</h2>
-    <p>If you have questions about these Terms of Service, please contact us:</p>
-    <ul>
-        <li><strong>Email:</strong> legal@pearlapp.com</li>
-        <li><strong>Support:</strong> support@pearlapp.com</li>
-        <li><strong>Website:</strong> www.pearlapp.com</li>
-    </ul>
-
-    <p><em>These Terms of Service are effective as of January 2025 and will remain in effect except with respect to any changes in their provisions in the future.</em></p>
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            delay: 0
+        });
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

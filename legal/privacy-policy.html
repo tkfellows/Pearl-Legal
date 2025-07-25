@@ -4,141 +4,692 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Pearl Medical Knowledge Management</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
     <style>
+        :root {
+            /* Pearl App Color Palette - Based on app icon */
+            --pearl-primary: #6366f1;
+            --pearl-secondary: #4f46e5;
+            --pearl-accent: #8b5cf6;
+            --pearl-light: #f8fafc;
+            --pearl-dark: #1e293b;
+            --pearl-muted: #64748b;
+            --pearl-success: #10b981;
+            --pearl-warning: #f59e0b;
+            --pearl-error: #ef4444;
+            --pearl-info: #3b82f6;
+            --pearl-white: #ffffff;
+            --pearl-gray-50: #f9fafb;
+            --pearl-gray-100: #f3f4f6;
+            --pearl-gray-200: #e5e7eb;
+            --pearl-gray-300: #d1d5db;
+            --pearl-gray-400: #9ca3af;
+            --pearl-gray-500: #6b7280;
+            --pearl-gray-600: #4b5563;
+            --pearl-gray-700: #374151;
+            --pearl-gray-800: #1f2937;
+            --pearl-gray-900: #111827;
+            
+            /* Gradients */
+            --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
+            --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --pearl-gradient-dark: linear-gradient(135deg, var(--pearl-dark) 0%, var(--pearl-gray-800) 100%);
+            
+            /* Shadows */
+            --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --pearl-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Border Radius */
+            --pearl-radius-sm: 0.375rem;
+            --pearl-radius: 0.5rem;
+            --pearl-radius-lg: 0.75rem;
+            --pearl-radius-xl: 1rem;
+            --pearl-radius-2xl: 1.5rem;
+            --pearl-radius-full: 9999px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--pearl-gradient-light);
+            color: var(--pearl-dark);
             line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header Section */
+        .header-section {
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--pearl-radius-full);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+        
+        /* Main Container */
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Content Card */
+        .content-card {
+            background: var(--pearl-white);
+            border-radius: var(--pearl-radius-2xl);
+            padding: 3rem;
+            margin: -2rem auto 3rem;
+            box-shadow: var(--pearl-shadow-xl);
+            border: 1px solid var(--pearl-gray-200);
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: var(--pearl-radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .highlight-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--pearl-white);
+            padding: 0 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .highlight-box h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .highlight-box p {
+            color: #78350f;
+            margin-bottom: 0;
+        }
+        
+        /* Table of Contents */
+        .table-of-contents {
+            background: var(--pearl-gray-50);
+            border: 1px solid var(--pearl-gray-200);
+            border-radius: var(--pearl-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .toc-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .toc-list a {
+            color: var(--pearl-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-list a:hover {
+            color: var(--pearl-accent);
+            transform: translateX(5px);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--pearl-dark);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--pearl-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-gray-700);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Content Styling */
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1rem;
+            color: var(--pearl-gray-700);
+            line-height: 1.7;
+        }
+        
+        .content-section ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: var(--pearl-gray-700);
+            position: relative;
+        }
+        
+        .content-section li::before {
+            content: '✓';
+            color: var(--pearl-success);
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--pearl-gradient-light);
+            border-radius: var(--pearl-radius-xl);
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid var(--pearl-gray-200);
+        }
+        
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--pearl-white);
+            border-radius: var(--pearl-radius);
+            border: 1px solid var(--pearl-gray-200);
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--pearl-gradient);
+            border-radius: var(--pearl-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .contact-text {
+            color: var(--pearl-gray-700);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--pearl-gradient-dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
-            color: #333;
         }
-        h1 {
-            color: #008080;
-            border-bottom: 2px solid #008080;
-            padding-bottom: 10px;
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        h2 {
-            color: #008080;
-            margin-top: 30px;
+        
+        .footer-text {
+            color: var(--pearl-gray-400);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
         }
-        .disclaimer {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--pearl-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
-        .contact {
-            background-color: #e8f4f8;
-            border: 1px solid #b3d9e6;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--pearl-shadow-lg);
+            color: white;
         }
-        ul {
-            padding-left: 20px;
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 1rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+                margin: -1rem auto 2rem;
+            }
+            
+            .header-section {
+                padding: 3rem 0 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
         }
-        li {
-            margin-bottom: 8px;
+        
+        @media (max-width: 480px) {
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .header-title {
+                font-size: 1.75rem;
+            }
+            
+            .section-title {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p><strong>Last updated: January 2025</strong></p>
-    
-    <div class="disclaimer">
-        <strong>Medical Disclaimer:</strong> Pearl is a knowledge management tool and does not provide medical advice. Always consult with qualified healthcare professionals for medical decisions.
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="main-container">
+            <div class="header-content text-center" data-aos="fade-up">
+                <h1 class="header-title">Privacy Policy</h1>
+                <p class="header-subtitle">
+                    Comprehensive privacy protection for your medical data. Learn how Pearl safeguards your personal information 
+                    and maintains the highest standards of data security and confidentiality.
+                </p>
+                <div class="header-badge">
+                    <i class="fas fa-shield-check"></i>
+                    Last updated: January 2025
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-card" data-aos="fade-up">
+            <!-- Medical Disclaimer -->
+            <div class="highlight-box" data-aos="fade-up" data-aos-delay="200">
+                <h4><i class="fas fa-exclamation-triangle"></i> Medical Disclaimer</h4>
+                <p>Pearl is a knowledge management tool and does not provide medical advice. Always consult with qualified healthcare professionals for medical decisions.</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="table-of-contents" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="toc-title">
+                    <i class="fas fa-list"></i>
+                    Table of Contents
+                </h3>
+                <ul class="toc-list">
+                    <li><a href="#introduction"><i class="fas fa-info-circle"></i> Introduction</a></li>
+                    <li><a href="#information-collected"><i class="fas fa-database"></i> Information We Collect</a></li>
+                    <li><a href="#how-we-use"><i class="fas fa-cogs"></i> How We Use Your Information</a></li>
+                    <li><a href="#data-storage"><i class="fas fa-shield-alt"></i> Data Storage and Security</a></li>
+                    <li><a href="#data-sharing"><i class="fas fa-share-alt"></i> Data Sharing and Third Parties</a></li>
+                    <li><a href="#user-rights"><i class="fas fa-user-check"></i> Your Rights and Choices</a></li>
+                    <li><a href="#data-retention"><i class="fas fa-clock"></i> Data Retention</a></li>
+                    <li><a href="#children-privacy"><i class="fas fa-child"></i> Children's Privacy</a></li>
+                    <li><a href="#changes"><i class="fas fa-edit"></i> Changes to This Policy</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Information</a></li>
+                </ul>
+            </div>
+
+            <!-- Introduction -->
+            <div class="content-section" id="introduction" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Introduction
+                </h2>
+                <p>Pearl ("we," "our," or "us") respects your privacy and is committed to protecting your personal and medical information. This Privacy Policy explains how we collect, use, and safeguard your information when you use our medical knowledge management application.</p>
+                <p>As a healthcare professional, you understand the importance of data privacy and security. Pearl is designed with privacy-first principles, ensuring that your medical knowledge and clinical insights remain secure and confidential.</p>
+            </div>
+
+            <!-- Information We Collect -->
+            <div class="content-section" id="information-collected" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-database"></i>
+                    Information We Collect
+                </h2>
+                <p>Pearl collects the following types of information:</p>
+                <ul>
+                    <li><strong>Medical Notes and Clinical Pearls:</strong> Text-based medical knowledge and clinical insights you create</li>
+                    <li><strong>Audio Recordings:</strong> Voice memos and clinical recordings you make within the app, including automatic speech-to-text transcriptions using Apple's Speech Framework</li>
+                    <li><strong>Photos and Images:</strong> Medical documentation and images you capture, including both original and cropped versions through our dual-save system</li>
+                    <li><strong>Tags and Categories:</strong> Organizational tags and medical specialty classifications you assign</li>
+                    <li><strong>App Usage Data:</strong> Basic usage statistics to improve app functionality</li>
+                </ul>
+            </div>
+
+            <!-- How We Use Your Information -->
+            <div class="content-section" id="how-we-use" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    How We Use Your Information
+                </h2>
+                <p>We use the collected information for the following purposes:</p>
+                <ul>
+                    <li>To provide and maintain the Pearl application</li>
+                    <li>To store your medical knowledge securely on your device</li>
+                    <li>To enable speech-to-text transcription of audio recordings using Apple's Speech Framework</li>
+                    <li>To facilitate iCloud backup and sync (if enabled)</li>
+                    <li>To improve app functionality and user experience</li>
+                    <li>To provide customer support and technical assistance</li>
+                    <li>To ensure app security and prevent unauthorized access</li>
+                </ul>
+            </div>
+
+            <!-- Data Storage and Security -->
+            <div class="content-section" id="data-storage" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Data Storage and Security
+                </h2>
+                <p><strong>Local Storage:</strong> All your data is stored locally on your device by default. We do not transmit your medical data to external servers or cloud services without your permission.</p>
+                
+                <p><strong>iCloud Backup:</strong> You may optionally enable iCloud backup, which encrypts your data in Apple's secure cloud infrastructure. This includes your medical notes, audio recordings, transcriptions, and photo files (both original and cropped versions).</p>
+                
+                <h3 class="subsection-title">
+                    <i class="fas fa-lock"></i>
+                    Security Measures
+                </h3>
+                <ul>
+                    <li>Audio recordings and speech-to-text transcriptions are stored securely on your device</li>
+                    <li>Photo files use a sophisticated dual-save system: original images are preserved while cropped versions are created for display, allowing you to recrop from the original at any time</li>
+                    <li>Medical notes are encrypted and stored locally</li>
+                    <li>We recommend regular backups of your device to protect your data</li>
+                    <li>Use of device security features (passcode, Face ID, Touch ID) is recommended</li>
+                </ul>
+            </div>
+
+            <!-- Data Sharing and Third Parties -->
+            <div class="content-section" id="data-sharing" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-share-alt"></i>
+                    Data Sharing and Third Parties
+                </h2>
+                <p>We do not share your medical data with third parties. However, you may choose to:</p>
+                <ul>
+                    <li>Share individual pearls through your device's native sharing features</li>
+                    <li>Export your data for backup purposes (including original and cropped photo versions)</li>
+                    <li>Use iCloud backup for secure cloud storage of your data (subject to Apple's privacy policies)</li>
+                    <li>Share speech-to-text transcriptions through your device's sharing capabilities</li>
+                </ul>
+            </div>
+
+            <!-- Your Rights and Choices -->
+            <div class="content-section" id="user-rights" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-user-check"></i>
+                    Your Rights and Choices
+                </h2>
+                <p>You have the following rights regarding your data:</p>
+                <ul>
+                    <li><strong>Access:</strong> You can access all your data stored in the app</li>
+                    <li><strong>Export:</strong> You can export your data in various formats (JSON, CSV, XML)</li>
+                    <li><strong>Delete:</strong> You can delete individual pearls or all data from the app</li>
+                    <li><strong>Backup Control:</strong> You control whether to enable iCloud backup</li>
+                    <li><strong>Device Security:</strong> You can use device security features to protect your data</li>
+                </ul>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="content-section" id="data-retention" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-clock"></i>
+                    Data Retention
+                </h2>
+                <p>Your data is retained as follows:</p>
+                <ul>
+                    <li><strong>Local Data:</strong> Stored on your device until you delete it or uninstall the app</li>
+                    <li><strong>iCloud Backup:</strong> Retained according to your iCloud settings and Apple's policies</li>
+                    <li><strong>Exported Data:</strong> Retained according to where you store the exported files</li>
+                </ul>
+            </div>
+
+            <!-- Children's Privacy -->
+            <div class="content-section" id="children-privacy" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-child"></i>
+                    Children's Privacy
+                </h2>
+                <p>Pearl is designed for healthcare professionals and is not intended for use by children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.</p>
+            </div>
+
+            <!-- Changes to This Policy -->
+            <div class="content-section" id="changes" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-edit"></i>
+                    Changes to This Policy
+                </h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in the app and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="content-section" id="contact" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-envelope"></i>
+                    Contact Information
+                </h2>
+                <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+                
+                <div class="contact-section">
+                    <h3 class="contact-title">
+                        <i class="fas fa-headset"></i>
+                        Contact Details
+                    </h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Email:</strong><br>
+                                privacy@pearlapp.com
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Website:</strong><br>
+                                https://github.com/tkfellows/Pearl
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="contact-text">
+                                <strong>Developer:</strong><br>
+                                Tyee Fellows, MD, MSc, CCFP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <h2>Introduction</h2>
-    <p>Pearl ("we," "our," or "us") respects your privacy and is committed to protecting your personal and medical information. This Privacy Policy explains how we collect, use, and safeguard your information when you use our medical knowledge management application.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="main-container">
+            <div class="footer-content">
+                <h3 class="footer-title">Pearl Medical Knowledge App</h3>
+                <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
+                <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
+                <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Legal Hub
+                </a>
+            </div>
+        </div>
+    </footer>
 
-    <h2>Information We Collect</h2>
-    <p>Pearl collects the following types of information:</p>
-    <ul>
-        <li><strong>Medical Notes and Clinical Pearls:</strong> Text-based medical knowledge and clinical insights you create</li>
-        <li><strong>Audio Recordings:</strong> Voice memos and clinical recordings you make within the app, including automatic speech-to-text transcriptions using Apple's Speech Framework</li>
-        <li><strong>Photos and Images:</strong> Medical documentation and images you capture, including both original and cropped versions through our dual-save system</li>
-        <li><strong>Tags and Categories:</strong> Organizational tags and medical specialty classifications you assign</li>
-        <li><strong>App Usage Data:</strong> Basic usage statistics to improve app functionality</li>
-    </ul>
-
-    <h2>How We Use Your Information</h2>
-    <p>We use the collected information for the following purposes:</p>
-    <ul>
-        <li>To provide and maintain the Pearl application</li>
-        <li>To store your medical knowledge securely on your device</li>
-        <li>To enable speech-to-text transcription of audio recordings using Apple's Speech Framework</li>
-        <li>To facilitate iCloud backup and sync (if enabled)</li>
-        <li>To improve app functionality and user experience</li>
-        <li>To provide customer support and technical assistance</li>
-        <li>To ensure app security and prevent unauthorized access</li>
-    </ul>
-
-    <h2>Data Storage and Security</h2>
-    <p><strong>Local Storage:</strong> All your data is stored locally on your device by default. We do not transmit your medical data to external servers or cloud services without your permission.</p>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <p><strong>iCloud Backup:</strong> You may optionally enable iCloud backup, which encrypts your data in Apple's secure cloud infrastructure. This includes your medical notes, audio recordings, transcriptions, and photo files (both original and cropped versions).</p>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <p><strong>Security Measures:</strong></p>
-    <ul>
-        <li>Audio recordings and speech-to-text transcriptions are stored securely on your device</li>
-        <li>Photo files use a sophisticated dual-save system: original images are preserved while cropped versions are created for display, allowing you to recrop from the original at any time</li>
-        <li>Medical notes are encrypted and stored locally</li>
-        <li>We recommend regular backups of your device to protect your data</li>
-        <li>Use of device security features (passcode, Face ID, Touch ID) is recommended</li>
-    </ul>
-
-    <h2>Data Sharing and Third Parties</h2>
-    <p>We do not share your medical data with third parties. However, you may choose to:</p>
-    <ul>
-        <li>Share individual pearls through your device's native sharing features</li>
-        <li>Export your data for backup purposes (including original and cropped photo versions)</li>
-        <li>Use iCloud backup for secure cloud storage of your data (subject to Apple's privacy policies)</li>
-        <li>Share speech-to-text transcriptions through your device's sharing capabilities</li>
-    </ul>
-
-    <h2>Your Rights and Choices</h2>
-    <p>You have the following rights regarding your data:</p>
-    <ul>
-        <li><strong>Access:</strong> View all your stored data within the app</li>
-        <li><strong>Modify:</strong> Edit, update, or delete your pearls at any time</li>
-        <li><strong>Export:</strong> Export your data for backup or transfer</li>
-        <li><strong>Delete:</strong> Remove individual pearls or all app data</li>
-    </ul>
-
-    <h2>Medical Privacy Compliance</h2>
-    <p>Pearl is designed with medical privacy in mind:</p>
-    <ul>
-        <li>All data remains on your device</li>
-        <li>No medical information is transmitted to external servers</li>
-        <li>We recommend compliance with applicable medical privacy laws (HIPAA, etc.)</li>
-        <li>Users are responsible for maintaining appropriate security measures</li>
-    </ul>
-
-    <h2>Children's Privacy</h2>
-    <p>Pearl is not intended for use by children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.</p>
-
-    <h2>Changes to This Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by:</p>
-    <ul>
-        <li>Posting the new Privacy Policy in the app</li>
-        <li>Updating the "Last updated" date</li>
-        <li>Requiring acceptance of updated terms when you next use the app</li>
-    </ul>
-
-    <h2>Contact Information</h2>
-    <div class="contact">
-        <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
-        <ul>
-            <li><strong>Email:</strong> privacy@pearlapp.com</li>
-            <li><strong>Support:</strong> support@pearlapp.com</li>
-            <li><strong>Website:</strong> www.pearlapp.com</li>
-        </ul>
-    </div>
-
-    <p><em>This Privacy Policy is effective as of January 2025 and will remain in effect except with respect to any changes in its provisions in the future.</em></p>
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100,
+            delay: 0
+        });
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc-list a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

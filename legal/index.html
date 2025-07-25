@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pearl - Legal Documents</title>
+    <title>Pearl - Legal Documentation Hub</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <!-- Custom styles -->
     <style>
         :root {
-            /* Pearl App Color Palette */
+            /* Pearl App Color Palette - Based on app icon */
             --pearl-primary: #6366f1;
             --pearl-secondary: #4f46e5;
             --pearl-accent: #8b5cf6;
@@ -31,16 +31,38 @@
             --pearl-warning: #f59e0b;
             --pearl-error: #ef4444;
             --pearl-info: #3b82f6;
+            --pearl-white: #ffffff;
+            --pearl-gray-50: #f9fafb;
+            --pearl-gray-100: #f3f4f6;
+            --pearl-gray-200: #e5e7eb;
+            --pearl-gray-300: #d1d5db;
+            --pearl-gray-400: #9ca3af;
+            --pearl-gray-500: #6b7280;
+            --pearl-gray-600: #4b5563;
+            --pearl-gray-700: #374151;
+            --pearl-gray-800: #1f2937;
+            --pearl-gray-900: #111827;
             
             /* Gradients */
             --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
             --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --pearl-gradient-dark: linear-gradient(135deg, var(--pearl-dark) 0%, var(--pearl-gray-800) 100%);
+            --pearl-gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
             
             /* Shadows */
             --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
             --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --pearl-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Border Radius */
+            --pearl-radius-sm: 0.375rem;
+            --pearl-radius: 0.5rem;
+            --pearl-radius-lg: 0.75rem;
+            --pearl-radius-xl: 1rem;
+            --pearl-radius-2xl: 1.5rem;
+            --pearl-radius-full: 9999px;
         }
         
         * {
@@ -55,14 +77,19 @@
             color: var(--pearl-dark);
             line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         
+        /* Hero Section */
         .hero-section {
             background: var(--pearl-gradient);
             color: white;
-            padding: 4rem 0;
+            padding: 6rem 0 4rem;
             position: relative;
             overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
         }
         
         .hero-section::before {
@@ -82,49 +109,91 @@
         }
         
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.2;
         }
         
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
             font-weight: 400;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
         }
         
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--pearl-radius-full);
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Main Container */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
         
+        /* Content Section */
         .content-section {
-            padding: 4rem 0;
+            padding: 5rem 0;
+            background: var(--pearl-white);
         }
         
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--pearl-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Document Grid */
         .doc-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
         
         .doc-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
+            background: var(--pearl-white);
+            border-radius: var(--pearl-radius-2xl);
+            padding: 2.5rem;
             box-shadow: var(--pearl-shadow);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--pearl-gray-200);
             position: relative;
             overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .doc-card::before {
@@ -138,65 +207,75 @@
         }
         
         .doc-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--pearl-shadow-xl);
+            transform: translateY(-12px);
+            box-shadow: var(--pearl-shadow-2xl);
+            border-color: var(--pearl-primary);
         }
         
         .doc-card:hover .doc-icon {
             transform: scale(1.1) rotate(5deg);
+            box-shadow: var(--pearl-shadow-xl);
         }
         
         .doc-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: var(--pearl-gradient);
-            border-radius: 12px;
+            border-radius: var(--pearl-radius-xl);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.75rem;
             color: white;
+            box-shadow: var(--pearl-shadow-lg);
         }
         
         .doc-title {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--pearl-dark);
             margin-bottom: 1rem;
+            line-height: 1.3;
         }
         
         .doc-description {
             color: var(--pearl-muted);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             line-height: 1.6;
+            flex-grow: 1;
         }
         
         .doc-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             background: var(--pearl-gradient);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 1rem 1.75rem;
+            border-radius: var(--pearl-radius-lg);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.875rem;
             transition: all 0.3s ease;
             border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            box-shadow: var(--pearl-shadow);
         }
         
         .doc-link:hover {
             transform: translateY(-2px);
-            box-shadow: var(--pearl-shadow-lg);
+            box-shadow: var(--pearl-shadow-xl);
             color: white;
         }
         
+        /* Footer */
         .footer {
-            background: var(--pearl-dark);
+            background: var(--pearl-gradient-dark);
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0 3rem;
             text-align: center;
         }
         
@@ -206,16 +285,35 @@
         }
         
         .footer-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.75rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .footer-text {
-            color: #94a3b8;
+            color: var(--pearl-gray-400);
             margin-bottom: 0.5rem;
+            font-size: 0.875rem;
         }
         
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--pearl-radius-full);
+            font-size: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        /* Floating Shapes */
         .floating-shapes {
             position: absolute;
             top: 0;
@@ -230,39 +328,53 @@
             position: absolute;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
+            animation: float 8s ease-in-out infinite;
         }
         
         .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
+            width: 100px;
+            height: 100px;
+            top: 15%;
+            left: 8%;
             animation-delay: 0s;
         }
         
         .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 10%;
+            width: 140px;
+            height: 140px;
+            top: 55%;
+            right: 8%;
             animation-delay: 2s;
         }
         
         .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+        
+        .shape:nth-child(4) {
             width: 60px;
             height: 60px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
+            top: 35%;
+            right: 25%;
+            animation-delay: 6s;
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
         }
         
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .hero-section {
+                padding: 4rem 0 3rem;
+                min-height: 50vh;
+            }
+            
             .hero-title {
                 font-size: 2.5rem;
             }
@@ -279,6 +391,38 @@
             .main-container {
                 padding: 0 1rem;
             }
+            
+            .content-section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .doc-card {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 3rem 0 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .doc-card {
+                padding: 1.5rem;
+            }
+            
+            .doc-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -289,14 +433,19 @@
             <div class="shape"></div>
             <div class="shape"></div>
             <div class="shape"></div>
+            <div class="shape"></div>
         </div>
         
         <div class="main-container">
             <div class="hero-content text-center" data-aos="fade-up">
-                <h1 class="hero-title">📚 Pearl Legal Documents</h1>
+                <div class="hero-badge" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-shield-check"></i>
+                    Medical App Compliance
+                </div>
+                <h1 class="hero-title">Pearl Legal Documentation</h1>
                 <p class="hero-subtitle">
-                    Comprehensive legal documentation and support information for the Pearl medical knowledge app. 
-                    Professional, secure, and compliant with App Store guidelines.
+                    Professional legal documentation and compliance hub for the Pearl medical knowledge management app. 
+                    Comprehensive, secure, and fully compliant with App Store guidelines and medical industry standards.
                 </p>
             </div>
         </div>
@@ -305,6 +454,13 @@
     <!-- Main Content -->
     <section class="content-section">
         <div class="main-container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Legal Documentation Hub</h2>
+                <p class="section-subtitle">
+                    Access all legal documents, compliance guides, and support information for the Pearl medical app
+                </p>
+            </div>
+            
             <div class="doc-grid">
                 <div class="doc-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="doc-icon">
@@ -319,8 +475,8 @@
                         View Privacy Policy
                         <i class="fas fa-arrow-right"></i>
                     </a>
-            </div>
-            
+                </div>
+                
                 <div class="doc-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="doc-icon">
                         <i class="fas fa-file-contract"></i>
@@ -334,8 +490,8 @@
                         View Terms of Service
                         <i class="fas fa-arrow-right"></i>
                     </a>
-            </div>
-            
+                </div>
+                
                 <div class="doc-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="doc-icon">
                         <i class="fas fa-bell"></i>
@@ -349,8 +505,8 @@
                         View Notifications Info
                         <i class="fas fa-arrow-right"></i>
                     </a>
-            </div>
-            
+                </div>
+                
                 <div class="doc-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="doc-icon">
                         <i class="fas fa-headset"></i>
@@ -407,6 +563,10 @@
                 <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
                 <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
                 <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+                <div class="footer-badge">
+                    <i class="fas fa-check-circle"></i>
+                    App Store Ready
+                </div>
             </div>
         </div>
     </footer>
@@ -420,10 +580,11 @@
     <!-- Initialize AOS -->
     <script>
         AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
+            duration: 1000,
+            easing: 'ease-out-cubic',
             once: true,
-            offset: 100
+            offset: 100,
+            delay: 0
         });
     </script>
 </body>

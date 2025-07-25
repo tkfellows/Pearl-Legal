@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Store Server Notifications - Pearl</title>
+    <title>App Store Server Notifications - Pearl Medical Knowledge Management</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <!-- Custom styles -->
     <style>
         :root {
-            /* Pearl App Color Palette */
+            /* Pearl App Color Palette - Based on app icon */
             --pearl-primary: #6366f1;
             --pearl-secondary: #4f46e5;
             --pearl-accent: #8b5cf6;
@@ -31,16 +31,37 @@
             --pearl-warning: #f59e0b;
             --pearl-error: #ef4444;
             --pearl-info: #3b82f6;
+            --pearl-white: #ffffff;
+            --pearl-gray-50: #f9fafb;
+            --pearl-gray-100: #f3f4f6;
+            --pearl-gray-200: #e5e7eb;
+            --pearl-gray-300: #d1d5db;
+            --pearl-gray-400: #9ca3af;
+            --pearl-gray-500: #6b7280;
+            --pearl-gray-600: #4b5563;
+            --pearl-gray-700: #374151;
+            --pearl-gray-800: #1f2937;
+            --pearl-gray-900: #111827;
             
             /* Gradients */
             --pearl-gradient: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-accent) 100%);
             --pearl-gradient-light: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --pearl-gradient-dark: linear-gradient(135deg, var(--pearl-dark) 0%, var(--pearl-gray-800) 100%);
             
             /* Shadows */
             --pearl-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --pearl-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
             --pearl-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --pearl-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --pearl-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            
+            /* Border Radius */
+            --pearl-radius-sm: 0.375rem;
+            --pearl-radius: 0.5rem;
+            --pearl-radius-lg: 0.75rem;
+            --pearl-radius-xl: 1rem;
+            --pearl-radius-2xl: 1.5rem;
+            --pearl-radius-full: 9999px;
         }
         
         * {
@@ -53,14 +74,15 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--pearl-gradient-light);
             color: var(--pearl-dark);
-            line-height: 1.7;
+            line-height: 1.6;
             min-height: 100vh;
         }
         
+        /* Header Section */
         .header-section {
             background: var(--pearl-gradient);
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0 3rem;
             position: relative;
             overflow: hidden;
         }
@@ -81,121 +103,309 @@
             z-index: 2;
         }
         
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            color: white;
-        }
-        
-        .page-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 2rem 0 1rem 0;
+        .header-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
             background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .page-meta {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
+        .header-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 600px;
         }
         
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--pearl-radius-full);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+        
+        /* Main Container */
         .main-container {
             max-width: 900px;
             margin: 0 auto;
             padding: 0 2rem;
         }
         
-        .content-section {
-            padding: 4rem 0;
-        }
-        
+        /* Content Card */
         .content-card {
-            background: white;
-            border-radius: 16px;
+            background: var(--pearl-white);
+            border-radius: var(--pearl-radius-2xl);
             padding: 3rem;
-            box-shadow: var(--pearl-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            margin: -2rem auto 3rem;
+            box-shadow: var(--pearl-shadow-xl);
+            border: 1px solid var(--pearl-gray-200);
+            position: relative;
+            z-index: 10;
         }
         
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--pearl-dark);
-            margin: 3rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--pearl-primary);
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 1px solid var(--pearl-info);
+            border-radius: var(--pearl-radius-lg);
+            padding: 1.5rem;
+            margin: 2rem 0;
             position: relative;
         }
         
-        .section-title::after {
-            content: '';
+        .info-box::before {
+            content: 'ℹ️';
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--pearl-accent);
+            top: -10px;
+            left: 20px;
+            background: var(--pearl-white);
+            padding: 0 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .info-box h4 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .info-box p {
+            color: #1e3a8a;
+            margin-bottom: 0;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--pearl-dark);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--pearl-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title:first-child {
+            margin-top: 0;
         }
         
         .subsection-title {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            color: var(--pearl-secondary);
-            margin: 2rem 0 1rem 0;
+            color: var(--pearl-gray-700);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .content-list {
-            list-style: none;
-            padding: 0;
+        /* Content Styling */
+        .content-section {
+            margin-bottom: 2rem;
         }
         
-        .content-list li {
+        .content-section p {
+            margin-bottom: 1rem;
+            color: var(--pearl-gray-700);
+            line-height: 1.7;
+        }
+        
+        .content-section ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: var(--pearl-gray-700);
             position: relative;
-            padding: 0.75rem 0 0.75rem 2rem;
-            border-bottom: 1px solid #f1f5f9;
         }
         
-        .content-list li::before {
+        .content-section li::before {
             content: '✓';
+            color: var(--pearl-success);
+            font-weight: bold;
             position: absolute;
-            left: 0;
-            top: 0.75rem;
-            width: 20px;
-            height: 20px;
-            background: var(--pearl-success);
-            color: white;
-            border-radius: 50%;
+            left: -1.5rem;
+        }
+        
+        /* Notification Types Grid */
+        .notification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .notification-card {
+            background: var(--pearl-gray-50);
+            border: 1px solid var(--pearl-gray-200);
+            border-radius: var(--pearl-radius-xl);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--pearl-shadow-lg);
+            border-color: var(--pearl-primary);
+        }
+        
+        .notification-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--pearl-gradient);
+            border-radius: var(--pearl-radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: var(--pearl-shadow);
         }
         
-        .content-list li:last-child {
-            border-bottom: none;
+        .notification-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
         }
         
+        .notification-description {
+            color: var(--pearl-gray-600);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .notification-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--pearl-radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .status-implemented {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: var(--pearl-gray-900);
+            border-radius: var(--pearl-radius-lg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: 'JSON';
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: var(--pearl-gray-700);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--pearl-radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .code-block pre {
+            color: #e5e7eb;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .code-block .highlight {
+            color: #fbbf24;
+        }
+        
+        .code-block .string {
+            color: #34d399;
+        }
+        
+        .code-block .number {
+            color: #60a5fa;
+        }
+        
+        /* Security Section */
+        .security-section {
+            background: var(--pearl-gradient-light);
+            border-radius: var(--pearl-radius-xl);
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--pearl-gray-200);
+        }
+        
+        .security-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--pearl-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--pearl-white);
+            border-radius: var(--pearl-radius);
+            border: 1px solid var(--pearl-gray-200);
+        }
+        
+        .security-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--pearl-success);
+            border-radius: var(--pearl-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .security-text {
+            color: var(--pearl-gray-700);
+            font-weight: 500;
+        }
+        
+        /* Footer */
         .footer {
-            background: var(--pearl-dark);
+            background: var(--pearl-gradient-dark);
             color: white;
             padding: 3rem 0;
             text-align: center;
@@ -209,152 +419,80 @@
         
         .footer-title {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .footer-text {
-            color: #94a3b8;
+            color: var(--pearl-gray-400);
             margin-bottom: 0.5rem;
+            font-size: 0.875rem;
         }
         
-        .table-of-contents {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .toc-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--pearl-dark);
-            margin-bottom: 1rem;
-        }
-        
-        .toc-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .toc-list li {
-            margin: 0.5rem 0;
-        }
-        
-        .toc-list a {
-            color: var(--pearl-primary);
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--pearl-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--pearl-radius-lg);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .toc-list a:hover {
-            color: var(--pearl-accent);
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-left: 4px solid var(--pearl-warning);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-        
-        .highlight-box::before {
-            content: '⚠️';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: white;
-            padding: 0.5rem;
-            border-radius: 50%;
-            font-size: 1.2rem;
-        }
-        
-        .info-box {
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            border-left: 4px solid var(--pearl-info);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-        
-        .info-box::before {
-            content: 'ℹ️';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: white;
-            padding: 0.5rem;
-            border-radius: 50%;
-            font-size: 1.2rem;
-        }
-        
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            overflow-x: auto;
-        }
-        
-        .notification-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .notification-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-        
-        .notification-card:hover {
-            box-shadow: var(--pearl-shadow);
-        }
-        
-        .notification-type {
             font-weight: 600;
-            color: var(--pearl-primary);
-            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
         
-        .notification-description {
-            color: var(--pearl-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--pearl-shadow-lg);
+            color: white;
         }
         
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .page-title {
-                font-size: 2.5rem;
-            }
-            
-            .content-card {
-                padding: 2rem;
-            }
-            
             .main-container {
                 padding: 0 1rem;
             }
             
+            .content-card {
+                padding: 2rem;
+                margin: -1rem auto 2rem;
+            }
+            
+            .header-section {
+                padding: 3rem 0 2rem;
+            }
+            
             .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .notification-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .security-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .header-title {
                 font-size: 1.75rem;
             }
             
-            .notification-types {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 1.25rem;
             }
         }
     </style>
@@ -363,286 +501,273 @@
     <!-- Header Section -->
     <section class="header-section">
         <div class="main-container">
-            <div class="header-content">
-                <a href="index.html" class="back-link" data-aos="fade-right">
-                    <i class="fas fa-arrow-left"></i>
-                    Back to Legal Documents
-                </a>
-                
-                <div class="text-center" data-aos="fade-up">
-                    <h1 class="page-title">App Store Server Notifications</h1>
-                    <p class="page-meta"><strong>Created:</strong> July 2025 | <strong>Last updated:</strong> July 2025</p>
+            <div class="header-content text-center" data-aos="fade-up">
+                <h1 class="header-title">App Store Server Notifications</h1>
+                <p class="header-subtitle">
+                    Detailed information about App Store Server Notifications for Pearl purchases. 
+                    Transparent transaction processing and secure payment handling.
+                </p>
+                <div class="header-badge">
+                    <i class="fas fa-bell"></i>
+                    Secure Transaction Processing
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <section class="content-section">
-        <div class="main-container">
-            <div class="content-card" data-aos="fade-up">
-                <div class="highlight-box">
-                    <strong>Important:</strong> This document explains how Pearl handles App Store Server Notifications for secure and transparent transaction processing.
-                </div>
+    <div class="main-container">
+        <div class="content-card" data-aos="fade-up">
+            <!-- Overview -->
+            <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+                <h4><i class="fas fa-info-circle"></i> About App Store Server Notifications</h4>
+                <p>App Store Server Notifications provide real-time updates about subscription status changes, purchase events, and other transaction-related activities. Pearl implements these notifications to ensure reliable transaction processing and subscription management.</p>
+            </div>
+
+            <!-- Overview Section -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    Overview
+                </h2>
+                <p>App Store Server Notifications are webhook notifications sent by Apple to inform your server about subscription status changes and other events related to in-app purchases. Pearl implements these notifications to ensure reliable transaction processing and subscription management.</p>
                 
-                <div class="table-of-contents">
-                    <h3 class="toc-title">📋 Table of Contents</h3>
-                    <ul class="toc-list">
-                        <li><a href="#overview">1. Overview</a></li>
-                        <li><a href="#what-are-notifications">2. What Are App Store Server Notifications?</a></li>
-                        <li><a href="#notification-types">3. Notification Types</a></li>
-                        <li><a href="#security">4. Security and Privacy</a></li>
-                        <li><a href="#implementation">5. Technical Implementation</a></li>
-                        <li><a href="#data-handling">6. Data Handling and Storage</a></li>
-                        <li><a href="#user-controls">7. User Controls and Preferences</a></li>
-                        <li><a href="#compliance">8. Compliance and Standards</a></li>
-                        <li><a href="#contact">9. Contact Information</a></li>
-                    </ul>
-                </div>
+                <p>These notifications help Pearl maintain accurate subscription status and provide a seamless user experience by automatically handling subscription renewals, cancellations, and other billing events.</p>
+            </div>
+
+            <!-- Notification Types -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-bell"></i>
+                    Notification Types
+                </h2>
                 
-                <section id="overview">
-                    <h2 class="section-title">1. Overview</h2>
-                    <p>Pearl uses Apple's App Store Server Notifications to ensure secure, reliable, and transparent processing of in-app purchases and subscriptions. This system provides real-time updates about transaction status, subscription changes, and billing events.</p>
-                    
-                    <div class="info-box">
-                        <strong>Purpose:</strong> App Store Server Notifications help Pearl maintain accurate billing records, prevent fraud, and provide users with transparent transaction information.
-                    </div>
-                </section>
-                
-                <section id="what-are-notifications">
-                    <h2 class="section-title">2. What Are App Store Server Notifications?</h2>
-                    <p>App Store Server Notifications are secure, encrypted messages sent by Apple to Pearl's servers when specific events occur related to your purchases. These notifications include:</p>
-                    
-                    <ul class="content-list">
-                        <li><strong>Purchase Events:</strong> Initial purchases, renewals, and cancellations</li>
-                        <li><strong>Subscription Changes:</strong> Upgrades, downgrades, and billing updates</li>
-                        <li><strong>Refund Processing:</strong> Refund requests and processing status</li>
-                        <li><strong>Account Changes:</strong> Family sharing updates and account transfers</li>
-                        <li><strong>Billing Issues:</strong> Payment failures and retry attempts</li>
-                    </ul>
-                </section>
-                
-                <section id="notification-types">
-                    <h2 class="section-title">3. Notification Types</h2>
-                    <p>Pearl receives and processes the following types of App Store Server Notifications:</p>
-                    
-                    <div class="notification-types">
-                        <div class="notification-card">
-                            <div class="notification-type">CONSUMPTION_REQUEST</div>
-                            <div class="notification-description">
-                                Apple requests consumption information for consumable in-app purchases to prevent duplicate purchases.
-                            </div>
+                <div class="notification-grid">
+                    <div class="notification-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="notification-icon">
+                            <i class="fas fa-shopping-cart"></i>
                         </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">DID_CHANGE_RENEWAL_PREF</div>
-                            <div class="notification-description">
-                                User changed their subscription renewal preference (e.g., from monthly to annual).
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">DID_CHANGE_RENEWAL_STATUS</div>
-                            <div class="notification-description">
-                                User enabled or disabled subscription auto-renewal.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">DID_FAIL_TO_RENEW</div>
-                            <div class="notification-description">
-                                Subscription renewal failed due to payment issues.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">DID_RENEW</div>
-                            <div class="notification-description">
-                                Subscription successfully renewed for another period.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">EXPIRED</div>
-                            <div class="notification-description">
-                                Subscription expired and was not renewed.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">GRACE_PERIOD_EXPIRED</div>
-                            <div class="notification-description">
-                                Grace period for failed payment has expired.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">OFFER_REDEEMED</div>
-                            <div class="notification-description">
-                                User redeemed a promotional offer or discount code.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">PRICE_INCREASE</div>
-                            <div class="notification-description">
-                                Subscription price increased and user was notified.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">REFUND</div>
-                            <div class="notification-description">
-                                Purchase was refunded by Apple or user.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">REFUND_DECLINED</div>
-                            <div class="notification-description">
-                                Refund request was declined by Apple.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">RENEWAL_EXTENDED</div>
-                            <div class="notification-description">
-                                Subscription renewal period was extended.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">REVOKE</div>
-                            <div class="notification-description">
-                                Purchase was revoked (e.g., due to fraud detection).
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">SUBSCRIBED</div>
-                            <div class="notification-description">
-                                User successfully subscribed to a service.
-                            </div>
-                        </div>
-                        
-                        <div class="notification-card">
-                            <div class="notification-type">TEST</div>
-                            <div class="notification-description">
-                                Test notification sent by Apple for verification.
-                            </div>
+                        <h3 class="notification-title">INITIAL_BUY</h3>
+                        <p class="notification-description">
+                            Sent when a user makes their first purchase of a subscription or non-consumable product.
+                        </p>
+                        <div class="notification-status status-implemented">
+                            <i class="fas fa-check"></i>
+                            Implemented
                         </div>
                     </div>
-                </section>
-                
-                <section id="security">
-                    <h2 class="section-title">4. Security and Privacy</h2>
                     
-                    <h3 class="subsection-title">4.1 Encryption and Authentication</h3>
-                    <ul class="content-list">
-                        <li>All notifications are encrypted using industry-standard TLS/SSL protocols</li>
-                        <li>Apple verifies notification authenticity using cryptographic signatures</li>
-                        <li>Pearl validates each notification before processing</li>
-                        <li>Secure webhook endpoints with authentication tokens</li>
-                    </ul>
-                    
-                    <h3 class="subsection-title">4.2 Data Protection</h3>
-                    <ul class="content-list">
-                        <li>Notification data is processed securely and never shared with third parties</li>
-                        <li>Personal information is minimized and encrypted at rest</li>
-                        <li>Access to notification data is restricted to authorized personnel only</li>
-                        <li>Regular security audits and penetration testing</li>
-                    </ul>
-                </section>
-                
-                <section id="implementation">
-                    <h2 class="section-title">5. Technical Implementation</h2>
-                    
-                    <h3 class="subsection-title">5.1 Webhook Endpoints</h3>
-                    <p>Pearl maintains secure webhook endpoints to receive App Store Server Notifications:</p>
-                    
-                    <div class="code-block">
-                        Production: https://api.pearlapp.com/webhooks/appstore<br>
-                        Sandbox: https://api.pearlapp.com/webhooks/appstore/sandbox
+                    <div class="notification-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="notification-icon">
+                            <i class="fas fa-sync"></i>
+                        </div>
+                        <h3 class="notification-title">RENEWAL</h3>
+                        <p class="notification-description">
+                            Sent when a subscription automatically renews for another billing period.
+                        </p>
+                        <div class="notification-status status-implemented">
+                            <i class="fas fa-check"></i>
+                            Implemented
+                        </div>
                     </div>
                     
-                    <h3 class="subsection-title">5.2 Notification Processing</h3>
-                    <ul class="content-list">
-                        <li>Real-time notification reception and validation</li>
-                        <li>Automatic transaction status updates</li>
-                        <li>Subscription state synchronization</li>
-                        <li>Error handling and retry mechanisms</li>
-                        <li>Comprehensive logging for audit trails</li>
-                    </ul>
-                </section>
-                
-                <section id="data-handling">
-                    <h2 class="section-title">6. Data Handling and Storage</h2>
+                    <div class="notification-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="notification-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <h3 class="notification-title">CANCEL</h3>
+                        <p class="notification-description">
+                            Sent when a subscription is cancelled by the user or Apple.
+                        </p>
+                        <div class="notification-status status-implemented">
+                            <i class="fas fa-check"></i>
+                            Implemented
+                        </div>
+                    </div>
                     
-                    <h3 class="subsection-title">6.1 Data Collection</h3>
-                    <ul class="content-list">
-                        <li>Transaction identifiers and purchase tokens</li>
-                        <li>Subscription status and renewal information</li>
-                        <li>Billing events and payment status</li>
-                        <li>App Store account identifiers (anonymized)</li>
-                        <li>Notification timestamps and event types</li>
-                    </ul>
+                    <div class="notification-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="notification-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="notification-title">BILLING_ISSUE</h3>
+                        <p class="notification-description">
+                            Sent when there's a billing issue with a subscription renewal.
+                        </p>
+                        <div class="notification-status status-implemented">
+                            <i class="fas fa-check"></i>
+                            Implemented
+                        </div>
+                    </div>
                     
-                    <h3 class="subsection-title">6.2 Data Retention</h3>
-                    <ul class="content-list">
-                        <li>Transaction records retained for 7 years (tax compliance)</li>
-                        <li>Subscription data retained while active plus 2 years</li>
-                        <li>Notification logs retained for 90 days for debugging</li>
-                        <li>Anonymized analytics data retained indefinitely</li>
-                    </ul>
-                </section>
-                
-                <section id="user-controls">
-                    <h2 class="section-title">7. User Controls and Preferences</h2>
-                    <ul class="content-list">
-                        <li>Users can view their purchase history in the App Store</li>
-                        <li>Subscription management through Apple ID settings</li>
-                        <li>Refund requests processed through Apple Support</li>
-                        <li>Data export available upon request</li>
-                        <li>Account deletion removes all associated data</li>
-                    </ul>
-                </section>
-                
-                <section id="compliance">
-                    <h2 class="section-title">8. Compliance and Standards</h2>
+                    <div class="notification-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="notification-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h3 class="notification-title">REFUND</h3>
+                        <p class="notification-description">
+                            Sent when a purchase is refunded by Apple or the user.
+                        </p>
+                        <div class="notification-status status-implemented">
+                            <i class="fas fa-check"></i>
+                            Implemented
+                        </div>
+                    </div>
                     
-                    <h3 class="subsection-title">8.1 App Store Guidelines</h3>
-                    <ul class="content-list">
-                        <li>Full compliance with Apple's App Store Review Guidelines</li>
-                        <li>Implementation of required App Store Server Notifications</li>
-                        <li>Proper handling of subscription status changes</li>
-                        <li>Transparent pricing and billing practices</li>
-                    </ul>
-                    
-                    <h3 class="subsection-title">8.2 Legal Compliance</h3>
-                    <ul class="content-list">
-                        <li>GDPR compliance for European users</li>
-                        <li>CCPA compliance for California residents</li>
-                        <li>HIPAA compliance for medical data handling</li>
-                        <li>PCI DSS compliance for payment processing</li>
-                    </ul>
-                </section>
-                
-                <section id="contact">
-                    <h2 class="section-title">9. Contact Information</h2>
-                    <p>For questions about App Store Server Notifications or billing issues:</p>
-                    <ul class="content-list">
-                        <li><strong>Billing Support:</strong> billing@pearlapp.com</li>
-                        <li><strong>Technical Support:</strong> <a href="support.html">Contact Support</a></li>
-                        <li><strong>Legal Inquiries:</strong> legal@pearlapp.com</li>
-                    </ul>
-                </section>
-                
-                <div class="info-box">
-                    <strong>Note:</strong> App Store Server Notifications are essential for maintaining accurate billing records and providing reliable service. Pearl processes these notifications automatically to ensure your subscription status is always current and accurate.
+                    <div class="notification-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="notification-icon">
+                            <i class="fas fa-pause"></i>
+                        </div>
+                        <h3 class="notification-title">GRACE_PERIOD</h3>
+                        <p class="notification-description">
+                            Sent when a subscription enters or exits a grace period.
+                        </p>
+                        <div class="notification-status status-implemented">
+                            <i class="fas fa-check"></i>
+                            Implemented
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Implementation Details -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    Implementation Details
+                </h2>
+                
+                <h3 class="subsection-title">
+                    <i class="fas fa-server"></i>
+                    Server Endpoint
+                </h3>
+                <p>Pearl implements a secure webhook endpoint to receive App Store Server Notifications:</p>
+                
+                <div class="code-block">
+                    <pre><span class="highlight">POST</span> <span class="string">/api/appstore/notifications</span>
+
+<span class="highlight">Headers:</span>
+<span class="string">"Content-Type"</span>: <span class="string">"application/json"</span>
+<span class="string">"X-Apple-Signature"</span>: <span class="string">"[signature]"</span>
+
+<span class="highlight">Body:</span> {
+  <span class="string">"signedPayload"</span>: <span class="string">"[base64-encoded payload]"</span>
+}</pre>
+                </div>
+                
+                <h3 class="subsection-title">
+                    <i class="fas fa-shield-alt"></i>
+                    Security Measures
+                </h3>
+                <p>All notifications are verified using Apple's cryptographic signatures to ensure authenticity and prevent fraud:</p>
+                
+                <div class="security-section">
+                    <h4 class="security-title">
+                        <i class="fas fa-lock"></i>
+                        Security Features
+                    </h4>
+                    <div class="security-features">
+                        <div class="security-item">
+                            <div class="security-icon">
+                                <i class="fas fa-signature"></i>
+                            </div>
+                            <div class="security-text">Cryptographic Signature Verification</div>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <div class="security-text">Apple Public Key Validation</div>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="security-text">Timestamp Validation</div>
+                        </div>
+                        <div class="security-item">
+                            <div class="security-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="security-text">Transaction Logging</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Processing Flow -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-project-diagram"></i>
+                    Processing Flow
+                </h2>
+                
+                <p>When Pearl receives an App Store Server Notification, the following process occurs:</p>
+                
+                <ol style="margin: 1rem 0; padding-left: 1.5rem; color: var(--pearl-gray-700);">
+                    <li><strong>Verification:</strong> The notification signature is verified using Apple's public key</li>
+                    <li><strong>Decoding:</strong> The signed payload is decoded to extract the notification data</li>
+                    <li><strong>Validation:</strong> The notification timestamp and transaction details are validated</li>
+                    <li><strong>Processing:</strong> The appropriate action is taken based on the notification type</li>
+                    <li><strong>Logging:</strong> The transaction is logged for audit and debugging purposes</li>
+                    <li><strong>Response:</strong> A 200 OK response is sent to Apple to acknowledge receipt</li>
+                </ol>
+            </div>
+
+            <!-- Error Handling -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Error Handling
+                </h2>
+                
+                <p>Pearl implements comprehensive error handling for App Store Server Notifications:</p>
+                
+                <ul>
+                    <li><strong>Signature Verification Failures:</strong> Invalid signatures are logged and rejected</li>
+                    <li><strong>Malformed Payloads:</strong> Corrupted or invalid payloads are logged for investigation</li>
+                    <li><strong>Processing Errors:</strong> Failed processing attempts are retried with exponential backoff</li>
+                    <li><strong>Database Errors:</strong> Transaction logging failures are handled gracefully</li>
+                    <li><strong>Network Issues:</strong> Temporary network problems are handled with retry logic</li>
+                </ul>
+            </div>
+
+            <!-- Testing -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-vial"></i>
+                    Testing
+                </h2>
+                
+                <p>Pearl's App Store Server Notification implementation is thoroughly tested using:</p>
+                
+                <ul>
+                    <li><strong>Sandbox Environment:</strong> All notifications are tested in Apple's sandbox environment</li>
+                    <li><strong>Test Notifications:</strong> Apple provides test notification payloads for validation</li>
+                    <li><strong>Mock Payloads:</strong> Custom test payloads are used for edge case testing</li>
+                    <li><strong>Load Testing:</strong> High-volume notification processing is tested</li>
+                    <li><strong>Security Testing:</strong> Signature verification and security measures are validated</li>
+                </ul>
+            </div>
+
+            <!-- Compliance -->
+            <div class="content-section" data-aos="fade-up">
+                <h2 class="section-title">
+                    <i class="fas fa-check-circle"></i>
+                    Compliance
+                </h2>
+                
+                <p>Pearl's App Store Server Notification implementation complies with:</p>
+                
+                <ul>
+                    <li><strong>App Store Review Guidelines:</strong> Follows all Apple's requirements for notification handling</li>
+                    <li><strong>Security Best Practices:</strong> Implements industry-standard security measures</li>
+                    <li><strong>Data Protection:</strong> Ensures user data privacy and security</li>
+                    <li><strong>Audit Requirements:</strong> Maintains comprehensive transaction logs</li>
+                    <li><strong>Performance Standards:</strong> Meets Apple's performance and reliability requirements</li>
+                </ul>
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -652,6 +777,10 @@
                 <p class="footer-text">Professional medical knowledge management for healthcare professionals</p>
                 <p class="footer-text">© 2025 Pearl App. All rights reserved.</p>
                 <p class="footer-text">Created: July 2025 | Last updated: July 2025</p>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Legal Hub
+                </a>
             </div>
         </div>
     </footer>
@@ -665,25 +794,11 @@
     <!-- Initialize AOS -->
     <script>
         AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
+            duration: 1000,
+            easing: 'ease-out-cubic',
             once: true,
-            offset: 100
-        });
-        
-        // Smooth scrolling for table of contents
-        document.querySelectorAll('.toc-list a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+            offset: 100,
+            delay: 0
         });
     </script>
 </body>
