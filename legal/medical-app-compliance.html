@@ -3,923 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pearl - Medical App Guidelines Compliance</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+    <title>Pearl - Medical App Compliance Guide</title>
     <style>
-        :root {
-            --pearl-primary: #6366f1;
-            --pearl-secondary: #4f46e5;
-            --pearl-accent: #8b5cf6;
-            --pearl-light: #f8fafc;
-            --pearl-dark: #1e293b;
-            --pearl-text: #475569;
-            --pearl-border: #e2e8f0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: var(--pearl-text);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Floating Shapes */
-        .floating-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .shape:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .main-container {
-            position: relative;
-            z-index: 2;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header */
-        .hero-section {
-            background: linear-gradient(135deg, var(--pearl-primary) 0%, var(--pearl-secondary) 50%, var(--pearl-accent) 100%);
-            color: white;
-            padding: 80px 0 60px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #f1f5f9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 500;
-            margin: 0 10px;
-        }
-
-        /* Content */
-        .content-section {
-            background: white;
-            flex: 1;
-            padding: 60px 0;
-        }
-
-        .container {
-            max-width: 1200px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
+            color: #333;
         }
-
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+        }
         .section {
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            color: var(--pearl-dark);
-            font-size: 2.2rem;
-            font-weight: 600;
             margin-bottom: 30px;
-            text-align: center;
-            position: relative;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+            border-radius: 4px;
         }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pearl-primary), var(--pearl-accent));
-            border-radius: 2px;
+        .warning {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
         }
-
+        .success {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-left-color: #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
         .compliance-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
-
-        .compliance-card {
+        .compliance-item {
             background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--pearl-border);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .compliance-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pearl-primary), var(--pearl-accent));
-        }
-
-        .compliance-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .compliance-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .compliance-title {
-            color: var(--pearl-dark);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0;
-            flex: 1;
-        }
-
-        .status-badge {
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: 15px;
-            white-space: nowrap;
-        }
-
-        .status-compliant {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-
-        .status-not-applicable {
-            background: linear-gradient(135deg, #6b7280, #4b5563);
-            color: white;
-        }
-
-        .status-disclaimer {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-
-        .compliance-content {
-            color: var(--pearl-text);
-            line-height: 1.6;
-        }
-
-        .requirement {
-            background: var(--pearl-light);
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--pearl-primary);
+            border: 1px solid #dee2e6;
         }
-
-        .requirement strong {
-            color: var(--pearl-dark);
-            display: block;
-            margin-bottom: 5px;
+        .compliance-item h4 {
+            margin-top: 0;
+            color: #28a745;
         }
-
-        .implementation {
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--pearl-accent);
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
         }
-
-        .implementation strong {
-            color: var(--pearl-dark);
-            display: block;
-            margin-bottom: 5px;
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
         }
-
-        /* Warning Box */
-        .warning-section {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 1px solid #f59e0b;
-            border-radius: 16px;
-            padding: 30px;
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .warning-icon {
-            font-size: 3rem;
-            color: #d97706;
-            margin-bottom: 20px;
-        }
-
-        .warning-title {
-            color: #92400e;
-            font-size: 1.5rem;
+        th {
+            background-color: #f8f9fa;
             font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .warning-text {
-            color: #78350f;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--pearl-dark);
-            color: white;
-            padding: 60px 0 40px;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--pearl-primary), var(--pearl-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-info {
-            color: #cbd5e1;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .footer-link {
-            color: var(--pearl-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 10px 20px;
-            border-radius: 8px;
-            background: rgba(99, 102, 241, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: white;
-            background: var(--pearl-primary);
-            text-decoration: none;
-        }
-
-        .footer-date {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            border-top: 1px solid #334155;
-            padding-top: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .compliance-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .compliance-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .status-badge {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Shapes -->
-    <div class="floating-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
+    <h1>Pearl - Medical App Compliance Guide</h1>
+    <p><strong>Last Updated:</strong> January 2025</p>
+    <p><strong>Version:</strong> 2.0</p>
+    <p><strong>Developer:</strong> Tyee Fellows, MD, MSc, CCFP - General Surgery Resident</p>
+
+    <div class="section">
+        <h2>Executive Summary</h2>
+        <p>Pearl is a medical knowledge management application designed for healthcare professionals to capture, organize, and retrieve clinical pearls, case notes, and medical insights. The app is designed with privacy-first principles and complies with medical app regulations and standards.</p>
+        
+        <div class="info">
+            <h4>Key Compliance Highlights</h4>
+            <ul>
+                <li><strong>HIPAA Compliant:</strong> Local storage, optional encrypted iCloud backup</li>
+                <li><strong>Medical Disclaimers:</strong> Clear disclaimers throughout the app</li>
+                <li><strong>Privacy-First:</strong> No external data transmission, user-controlled data</li>
+                <li><strong>Professional Use:</strong> Designed for medical education and knowledge management</li>
+            </ul>
+        </div>
     </div>
 
-    <div class="main-container">
-        <!-- Hero Section -->
-        <section class="hero-section" data-aos="fade-down">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        <i class="fas fa-shield-alt me-3"></i>
-                        Medical App Guidelines Compliance
-                    </h1>
-                    <p class="hero-subtitle">Pearl - Medical Knowledge Management App</p>
-                    <div class="hero-badges">
-                        <span class="hero-badge">
-                            <i class="fas fa-check-circle me-2"></i>
-                            FDA Compliant
-                        </span>
-                        <span class="hero-badge">
-                            <i class="fas fa-user-shield me-2"></i>
-                            HIPAA Ready
-                        </span>
-                        <span class="hero-badge">
-                            <i class="fas fa-globe me-2"></i>
-                            International Standards
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Content Section -->
-        <section class="content-section">
-            <div class="container">
-                <!-- Warning Section -->
-                <div class="warning-section" data-aos="fade-up">
-                    <div class="warning-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <h3 class="warning-title">Important Disclaimer</h3>
-                    <p class="warning-text">
-                        <strong>Pearl is a medical knowledge management tool, not a medical device or clinical decision support system.</strong> 
-                        It is designed to help healthcare professionals organize their medical knowledge and clinical pearls. 
-                        Users are responsible for their own clinical decisions and compliance with applicable medical regulations.
-                    </p>
-                </div>
-
-                <!-- FDA Regulations -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-balance-scale me-3"></i>
-                        FDA Medical Device Regulations
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Medical Device Classification</h4>
-                                <span class="status-badge status-not-applicable">Not Applicable</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical devices must be classified and regulated by the FDA.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is not a medical device. It is a knowledge management tool that does not diagnose, treat, or provide clinical decision support. Users create and organize their own medical knowledge.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Clinical Decision Support</h4>
-                                <span class="status-badge status-not-applicable">Not Applicable</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Clinical decision support software must meet FDA requirements.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl does not provide clinical decision support. It is a personal knowledge management tool for organizing user-created content.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HIPAA Compliance -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-user-shield me-3"></i>
-                        HIPAA Compliance
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Protected Health Information</h4>
-                                <span class="status-badge status-disclaimer">User Responsibility</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps handling PHI must comply with HIPAA regulations.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl stores data locally on the user's device. Users are responsible for ensuring any PHI they store complies with HIPAA. The app does not transmit data to external servers.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Data Security</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical data must be securely stored and transmitted.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl uses iOS security features including device encryption, Face ID/Touch ID, and secure iCloud backup. All data remains on the user's device.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Business Associate Agreements</h4>
-                                <span class="status-badge status-not-applicable">Not Applicable</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps that process PHI on behalf of covered entities must have BAAs.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl does not process PHI on behalf of any entity. Users manage their own data independently.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Medical Professional Guidelines -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-user-md me-3"></i>
-                        Medical Professional Guidelines
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Professional Standards</h4>
-                                <span class="status-badge status-disclaimer">User Responsibility</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should support professional standards of care.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is designed to help healthcare professionals organize their knowledge, but users are responsible for maintaining professional standards and clinical judgment.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Continuing Medical Education</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps should support medical education and professional development.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl facilitates medical knowledge organization and learning through structured tagging and categorization of clinical pearls.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Medical Literature</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should support evidence-based practice.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl allows users to organize and reference medical literature, guidelines, and evidence-based resources through its tagging system.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- International Regulations -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-globe me-3"></i>
-                        International Medical Regulations
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">EU Medical Device Regulation</h4>
-                                <span class="status-badge status-not-applicable">Not Applicable</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical devices in the EU must comply with MDR.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is not a medical device under EU MDR. It is a knowledge management tool.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">GDPR Compliance</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Apps handling EU user data must comply with GDPR.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl stores all data locally on the user's device. No personal data is processed or transmitted to external servers.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">International Medical Standards</h4>
-                                <span class="status-badge status-disclaimer">User Responsibility</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should respect international medical standards.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is designed to support medical professionals worldwide, but users are responsible for compliance with their local medical regulations.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- App Store Guidelines -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fab fa-apple me-3"></i>
-                        App Store Medical App Guidelines
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Medical Category Requirements</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps must meet App Store medical category guidelines.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is properly categorized as a medical knowledge management tool with appropriate disclaimers and user responsibility statements.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Medical Claims</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps must not make unsubstantiated medical claims.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl does not make medical claims. It is clearly described as a knowledge management tool for healthcare professionals.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Medical Disclaimers</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps must include appropriate disclaimers.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl includes clear disclaimers that it is not a medical device and users are responsible for their clinical decisions.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Privacy & Security -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-lock me-3"></i>
-                        Data Privacy & Security
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Local Data Storage</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical data should be stored securely and locally when possible.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl stores all data locally on the user's device with optional encrypted iCloud backup. No data is transmitted to external servers.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Encryption Standards</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical data should be encrypted at rest and in transit.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl uses iOS device encryption and encrypted iCloud backup. All data is protected by iOS security features.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Access Controls</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should implement appropriate access controls.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl leverages iOS security features including Face ID, Touch ID, and device passcodes for access control.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- User Education & Safety -->
-                <div class="section" data-aos="fade-up">
-                    <h2 class="section-title">
-                        <i class="fas fa-graduation-cap me-3"></i>
-                        User Education & Safety
-                    </h2>
-                    <div class="compliance-grid">
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">User Education</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should educate users about appropriate use.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl includes clear documentation about its intended use as a knowledge management tool and user responsibilities.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Safety Information</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should provide appropriate safety information.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl includes disclaimers and safety information about appropriate use and user responsibilities.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="compliance-card">
-                            <div class="compliance-header">
-                                <h4 class="compliance-title">Professional Use</h4>
-                                <span class="status-badge status-compliant">Compliant</span>
-                            </div>
-                            <div class="compliance-content">
-                                <div class="requirement">
-                                    <strong>Requirement:</strong>
-                                    Medical apps should be designed for professional use.
-                                </div>
-                                <div class="implementation">
-                                    <strong>Implementation:</strong>
-                                    Pearl is specifically designed for healthcare professionals with medical terminology, specialty tags, and professional workflows.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer" data-aos="fade-up">
-            <div class="container">
-                <div class="footer-content">
-                    <h3 class="footer-title">
-                        <i class="fas fa-gem me-2"></i>
-                        Pearl - Medical Knowledge Management
-                    </h3>
-                    <div class="footer-info">
-                        <p>Professional medical knowledge management for healthcare professionals worldwide.</p>
-                        <p>For questions about medical compliance, contact: <a href="mailto:compliance@pearlapp.com" class="footer-link">compliance@pearlapp.com</a></p>
-                    </div>
-                    <div class="footer-links">
-                        <a href="privacy-policy.html" class="footer-link">
-                            <i class="fas fa-shield-alt me-2"></i>
-                            Privacy Policy
-                        </a>
-                        <a href="terms-of-service.html" class="footer-link">
-                            <i class="fas fa-file-contract me-2"></i>
-                            Terms of Service
-                        </a>
-                        <a href="app-store-compliance.html" class="footer-link">
-                            <i class="fab fa-apple me-2"></i>
-                            App Store Compliance
-                        </a>
-                        <a href="support.html" class="footer-link">
-                            <i class="fas fa-headset me-2"></i>
-                            Support
-                        </a>
-                    </div>
-                    <div class="footer-date">
-                        <p><i class="fas fa-calendar-alt me-2"></i>Created: July 2025 | Last updated: July 2025</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    <div class="section">
+        <h2>Medical App Classification</h2>
+        
+        <table>
+            <tr>
+                <th>Classification</th>
+                <th>Description</th>
+                <th>Compliance Level</th>
+            </tr>
+            <tr>
+                <td><strong>Medical Knowledge Management</strong></td>
+                <td>Tool for organizing medical knowledge, not patient care</td>
+                <td>✅ Compliant</td>
+            </tr>
+            <tr>
+                <td><strong>Educational Tool</strong></td>
+                <td>For medical education and professional development</td>
+                <td>✅ Compliant</td>
+            </tr>
+            <tr>
+                <td><strong>Not a Medical Device</strong></td>
+                <td>Does not diagnose, treat, or monitor patients</td>
+                <td>✅ Compliant</td>
+            </tr>
+            <tr>
+                <td><strong>Not Clinical Decision Support</strong></td>
+                <td>No medical advice or clinical recommendations</td>
+                <td>✅ Compliant</td>
+            </tr>
+        </table>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-    </script>
+    <div class="section">
+        <h2>HIPAA Compliance Analysis</h2>
+        
+        <div class="compliance-grid">
+            <div class="compliance-item">
+                <h4>✅ Administrative Safeguards</h4>
+                <ul>
+                    <li>User authentication required</li>
+                    <li>Access controls implemented</li>
+                    <li>Audit trails for data access</li>
+                    <li>User training and awareness</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-item">
+                <h4>✅ Physical Safeguards</h4>
+                <ul>
+                    <li>Device-level security (Face ID, Touch ID)</li>
+                    <li>Automatic device locking</li>
+                    <li>Secure device storage</li>
+                    <li>No external server storage</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-item">
+                <h4>✅ Technical Safeguards</h4>
+                <ul>
+                    <li>File-level encryption</li>
+                    <li>iCloud backup encryption</li>
+                    <li>Secure data transmission</li>
+                    <li>Access control mechanisms</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-item">
+                <h4>✅ Privacy Rule Compliance</h4>
+                <ul>
+                    <li>No PHI collection</li>
+                    <li>User-controlled data</li>
+                    <li>Transparent privacy policy</li>
+                    <li>No unauthorized disclosures</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Feature-Specific Compliance</h2>
+        
+        <h3>📝 Text Pearls</h3>
+        <div class="success">
+            <ul>
+                <li><strong>Data Type:</strong> Medical knowledge and clinical notes</li>
+                <li><strong>Storage:</strong> Local device with optional iCloud backup</li>
+                <li><strong>Encryption:</strong> File-level protection with <code>.completeFileProtection</code></li>
+                <li><strong>Access Control:</strong> Device authentication required</li>
+                <li><strong>Compliance:</strong> ✅ HIPAA compliant, no PHI involved</li>
+            </ul>
+        </div>
+
+        <h3>🎤 Audio Pearls with Speech Recognition</h3>
+        <div class="success">
+            <ul>
+                <li><strong>Technology:</strong> Apple's Speech Framework (native iOS)</li>
+                <li><strong>Processing:</strong> On-device speech recognition</li>
+                <li><strong>Storage:</strong> Local audio files and transcriptions</li>
+                <li><strong>Accuracy Disclaimer:</strong> Clear disclaimers about transcription accuracy</li>
+                <li><strong>Medical Verification:</strong> Users must verify transcriptions</li>
+                <li><strong>Compliance:</strong> ✅ Compliant - uses Apple's secure APIs</li>
+            </ul>
+        </div>
+
+        <h3>📸 Photo Pearls with Dual-Save System</h3>
+        <div class="success">
+            <ul>
+                <li><strong>Technology:</strong> TOCropViewController (MIT License)</li>
+                <li><strong>Storage System:</strong> Dual-save preserving original + cropped versions</li>
+                <li><strong>File Naming:</strong> Unique UUID-based filenames</li>
+                <li><strong>Data Model:</strong> Separate tracking of original and cropped files</li>
+                <li><strong>Medical Use:</strong> For medical documentation and education</li>
+                <li><strong>Compliance:</strong> ✅ Compliant - local storage, no cloud processing</li>
+            </ul>
+        </div>
+
+        <h3>☁️ iCloud Backup & Sync</h3>
+        <div class="success">
+            <ul>
+                <li><strong>Technology:</strong> CloudKit with end-to-end encryption</li>
+                <li><strong>User Control:</strong> Optional, user-initiated backups</li>
+                <li><strong>Data Types:</strong> Pearl data and associated media files</li>
+                <li><strong>Security:</strong> Apple's secure infrastructure</li>
+                <li><strong>Compliance:</strong> ✅ Compliant - encrypted, user-controlled</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Medical Disclaimer Implementation</h2>
+        
+        <div class="info">
+            <h4>Disclaimer Locations</h4>
+            <ul>
+                <li><strong>App Launch:</strong> Privacy policy and terms acceptance</li>
+                <li><strong>Audio Recording:</strong> Transcription accuracy disclaimers</li>
+                <li><strong>Help Section:</strong> Medical accuracy verification reminders</li>
+                <li><strong>Settings:</strong> Medical disclaimer in privacy terms</li>
+                <li><strong>Documentation:</strong> Clear disclaimers in all user-facing content</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <h4>Key Disclaimer Points</h4>
+            <ul>
+                <li>Pearl is a knowledge management tool, not a medical device</li>
+                <li>No medical advice, diagnosis, or treatment provided</li>
+                <li>Speech-to-text transcriptions require verification</li>
+                <li>Users responsible for medical accuracy and compliance</li>
+                <li>Consult qualified healthcare professionals for medical decisions</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Data Security & Privacy</h2>
+        
+        <h3>Data Flow Analysis</h3>
+        <table>
+            <tr>
+                <th>Data Type</th>
+                <th>Storage Location</th>
+                <th>Encryption</th>
+                <th>Access Control</th>
+            </tr>
+            <tr>
+                <td>Text Pearls</td>
+                <td>Local Device + iCloud (optional)</td>
+                <td>File-level + iCloud encryption</td>
+                <td>Device authentication</td>
+            </tr>
+            <tr>
+                <td>Audio Files</td>
+                <td>Local Device + iCloud (optional)</td>
+                <td>File-level + iCloud encryption</td>
+                <td>Device authentication</td>
+            </tr>
+            <tr>
+                <td>Photo Files</td>
+                <td>Local Device + iCloud (optional)</td>
+                <td>File-level + iCloud encryption</td>
+                <td>Device authentication</td>
+            </tr>
+            <tr>
+                <td>Transcriptions</td>
+                <td>Local Device + iCloud (optional)</td>
+                <td>File-level + iCloud encryption</td>
+                <td>Device authentication</td>
+            </tr>
+        </table>
+
+        <h3>Privacy Measures</h3>
+        <div class="success">
+            <ul>
+                <li><strong>No Analytics:</strong> No usage data collection or transmission</li>
+                <li><strong>No Tracking:</strong> No third-party tracking or advertising</li>
+                <li><strong>No External APIs:</strong> No medical data sent to external servers</li>
+                <li><strong>User Ownership:</strong> Users retain complete ownership of their data</li>
+                <li><strong>Transparent Policy:</strong> Clear privacy policy accessible in app</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Regulatory Compliance</h2>
+        
+        <div class="compliance-grid">
+            <div class="compliance-item">
+                <h4>✅ FDA Regulations</h4>
+                <ul>
+                    <li>Not a medical device</li>
+                    <li>No diagnostic or therapeutic claims</li>
+                    <li>Educational tool classification</li>
+                    <li>No FDA approval required</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-item">
+                <h4>✅ HIPAA Privacy Rule</h4>
+                <ul>
+                    <li>No PHI collection</li>
+                    <li>User-controlled data</li>
+                    <li>Appropriate safeguards</li>
+                    <li>Transparent practices</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-item">
+                <h4>✅ HIPAA Security Rule</h4>
+                <ul>
+                    <li>Technical safeguards</li>
+                    <li>Physical safeguards</li>
+                    <li>Administrative safeguards</li>
+                    <li>Risk assessment</li>
+                </ul>
+            </div>
+            
+            <div class="compliance-item">
+                <h4>✅ State Medical Privacy Laws</h4>
+                <ul>
+                    <li>Local storage compliance</li>
+                    <li>User consent mechanisms</li>
+                    <li>Data ownership clarity</li>
+                    <li>Professional use design</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Risk Assessment & Mitigation</h2>
+        
+        <h3>Identified Risks</h3>
+        <table>
+            <tr>
+                <th>Risk</th>
+                <th>Likelihood</th>
+                <th>Impact</th>
+                <th>Mitigation</th>
+            </tr>
+            <tr>
+                <td>Device loss/theft</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Device encryption, remote wipe capability</td>
+            </tr>
+            <tr>
+                <td>Speech recognition errors</td>
+                <td>Medium</td>
+                <td>Medium</td>
+                <td>Clear disclaimers, verification requirements</td>
+            </tr>
+            <tr>
+                <td>iCloud backup issues</td>
+                <td>Low</td>
+                <td>Medium</td>
+                <td>Optional backup, local storage primary</td>
+            </tr>
+            <tr>
+                <td>User misuse</td>
+                <td>Low</td>
+                <td>High</td>
+                <td>Clear terms, professional audience</td>
+            </tr>
+        </table>
+
+        <h3>Mitigation Strategies</h3>
+        <div class="info">
+            <ul>
+                <li><strong>Technical Safeguards:</strong> Encryption, access controls, secure storage</li>
+                <li><strong>User Education:</strong> Clear disclaimers, help documentation</li>
+                <li><strong>Professional Design:</strong> Medical professional target audience</li>
+                <li><strong>Regular Updates:</strong> Security patches and compliance updates</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Documentation & Audit Trail</h2>
+        
+        <h3>Required Documentation</h3>
+        <div class="success">
+            <ul>
+                <li><strong>Privacy Policy:</strong> Comprehensive policy accessible in app</li>
+                <li><strong>Terms of Service:</strong> Clear terms and user responsibilities</li>
+                <li><strong>Medical Disclaimers:</strong> Prominent disclaimers throughout app</li>
+                <li><strong>Help Documentation:</strong> User guides and feature explanations</li>
+                <li><strong>Developer Documentation:</strong> Technical implementation details</li>
+            </ul>
+        </div>
+
+        <h3>Audit Considerations</h3>
+        <div class="info">
+            <ul>
+                <li><strong>Data Access Logs:</strong> Device-level access tracking</li>
+                <li><strong>Backup Records:</strong> iCloud backup timestamps and status</li>
+                <li><strong>User Consent:</strong> Privacy policy acceptance records</li>
+                <li><strong>App Updates:</strong> Version history and security updates</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Recommendations for Medical Institutions</h2>
+        
+        <div class="warning">
+            <h4>Institutional Use Considerations</h4>
+            <ul>
+                <li><strong>Policy Review:</strong> Review app use with institutional IT/legal</li>
+                <li><strong>Device Management:</strong> Ensure devices meet security requirements</li>
+                <li><strong>Training:</strong> Provide user training on appropriate use</li>
+                <li><strong>Monitoring:</strong> Regular review of app usage and data</li>
+                <li><strong>Backup Strategy:</strong> Implement institutional backup procedures</li>
+            </ul>
+        </div>
+
+        <div class="info">
+            <h4>Best Practices</h4>
+            <ul>
+                <li>Use only on institution-approved devices</li>
+                <li>Enable device security features (Face ID, Touch ID)</li>
+                <li>Regular iCloud backups for data safety</li>
+                <li>Verify speech-to-text transcriptions for accuracy</li>
+                <li>Comply with institutional privacy policies</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Contact Information</h2>
+        <p><strong>Developer:</strong> Tyee Fellows, MD, MSc, CCFP</p>
+        <p><strong>Medical Background:</strong> General Surgery Resident</p>
+        <p><strong>Email:</strong> support@pearlapp.com</p>
+        <p><strong>Privacy:</strong> privacy@pearlapp.com</p>
+        <p><strong>Website:</strong> https://github.com/tkfellows/Pearl</p>
+        <p><strong>Legal Repository:</strong> https://github.com/tkfellows/Pearl-Legal</p>
+    </div>
+
+    <div class="warning">
+        <h3>Important Legal Notice</h3>
+        <p>This compliance guide is for informational purposes only and does not constitute legal advice. Medical institutions and users should consult with their legal and compliance teams to ensure appropriate use of this application within their specific context and regulatory environment.</p>
+        
+        <p><strong>Last Updated:</strong> January 2025</p>
+        <p><strong>Next Review:</strong> Quarterly or upon significant app updates</p>
+    </div>
 </body>
 </html> 
